@@ -7,21 +7,21 @@
   
   <title>How to use JAD? | Jake&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0x00 前言JAD是一个反编译Java class字节码的工具，我们可以用它批量地对进行反编译，本文将介绍它的使用步骤。 0x01 使用步骤示例1) 下载下载地址：https://varaneckas.com/jad/ （解压后即可使用，如果jad的版本太老旧，更容易出现“ Class file version mismatch”错误；我下载的是“jad158g.win”） 2) 解压jar包把">
+  <meta name="description" content="0x00 前言JAD是一个反编译Java class字节码的工具，我们可以用它批量地对进行反编译，本文将介绍它的使用步骤。 0x01 使用步骤示例1) 下载下载地址：https://varaneckas.com/jad/ （解压后即可使用，如果jad的版本太老旧，更容易出现“ Class file version mismatch”错误；我下载的是“jad158g.win”） 2) 解压ja">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to use JAD?">
 <meta property="og:url" content="https://chenergy1991.github.io/2019/03/17/how-to-use-jad/index.html">
 <meta property="og:site_name" content="Jake&#39;s Blog">
-<meta property="og:description" content="0x00 前言JAD是一个反编译Java class字节码的工具，我们可以用它批量地对进行反编译，本文将介绍它的使用步骤。 0x01 使用步骤示例1) 下载下载地址：https://varaneckas.com/jad/ （解压后即可使用，如果jad的版本太老旧，更容易出现“ Class file version mismatch”错误；我下载的是“jad158g.win”） 2) 解压jar包把">
+<meta property="og:description" content="0x00 前言JAD是一个反编译Java class字节码的工具，我们可以用它批量地对进行反编译，本文将介绍它的使用步骤。 0x01 使用步骤示例1) 下载下载地址：https://varaneckas.com/jad/ （解压后即可使用，如果jad的版本太老旧，更容易出现“ Class file version mismatch”错误；我下载的是“jad158g.win”） 2) 解压ja">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/how-to-use-jad/Extract%20Jar.png">
 <meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/how-to-use-jad/Run%20JAD.png">
 <meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/how-to-use-jad/Result.png">
 <meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/how-to-use-jad/IDEA.png">
-<meta property="og:updated_time" content="2018-10-07T09:48:28.000Z">
+<meta property="og:updated_time" content="2019-03-18T06:36:43.030Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to use JAD?">
-<meta name="twitter:description" content="0x00 前言JAD是一个反编译Java class字节码的工具，我们可以用它批量地对进行反编译，本文将介绍它的使用步骤。 0x01 使用步骤示例1) 下载下载地址：https://varaneckas.com/jad/ （解压后即可使用，如果jad的版本太老旧，更容易出现“ Class file version mismatch”错误；我下载的是“jad158g.win”） 2) 解压jar包把">
+<meta name="twitter:description" content="0x00 前言JAD是一个反编译Java class字节码的工具，我们可以用它批量地对进行反编译，本文将介绍它的使用步骤。 0x01 使用步骤示例1) 下载下载地址：https://varaneckas.com/jad/ （解压后即可使用，如果jad的版本太老旧，更容易出现“ Class file version mismatch”错误；我下载的是“jad158g.win”） 2) 解压ja">
 <meta name="twitter:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/how-to-use-jad/Extract%20Jar.png">
   
     <link rel="alternate" href="/chenergy1991.github.io/atom.xml" title="Jake&#39;s Blog" type="application/atom+xml">
@@ -95,7 +95,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p><code>JAD</code>是一个反编译Java class字节码的工具，我们可以用它批量地对进行反编译，本文将介绍它的使用步骤。</p>
+        <meta name="referrer" content="no-referrer">
+
+
+<h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p><code>JAD</code>是一个反编译Java class字节码的工具，我们可以用它批量地对进行反编译，本文将介绍它的使用步骤。</p>
 <h2 id="0x01-使用步骤示例"><a href="#0x01-使用步骤示例" class="headerlink" title="0x01 使用步骤示例"></a>0x01 使用步骤示例</h2><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1) 下载"></a>1) 下载</h3><p>下载地址：<a href="https://varaneckas.com/jad/" target="_blank" rel="noopener">https://varaneckas.com/jad/</a></p>
 <p>（解压后即可使用，如果jad的版本太老旧，更容易出现“ Class file version mismatch”错误；我下载的是“jad158g.win”）</p>
 <h3 id="2-解压jar包"><a href="#2-解压jar包" class="headerlink" title="2) 解压jar包"></a>2) 解压jar包</h3><p>把jar包的后缀改为<code>zip</code>，并进行解压，如图所示。</p>
@@ -115,7 +118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/17/how-to-use-jad/" data-id="cjtdz3v4k0002dkv19q23sddo" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/17/how-to-use-jad/" data-id="cjtdz7rdf000184v1ivffflab" class="article-share-link">Share</a>
       
       
     </footer>
