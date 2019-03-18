@@ -15,28 +15,28 @@
 <meta property="og:description" content="####前言 小编实现了一个“可实现导入导出Excel的Django小应用”。这篇文档是学习记录，请亲们帮我指正！ 小应用的GitHub网址如下：https://github.com/chenergy1991/P_QQ_Management ####文章主要结构123456789101112131415161 功能简介2 开发环境搭建3 开发要点	3.1 建立项目	3.2 建立应用	3.3 处理模">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool//系统工作流.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/New%20Project.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/Run%20manage.py.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/startapp%20CVE.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/INSTALLED_APPS.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/Model-Excel.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/makemigrations.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/migrate.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/createsuperuser.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/admin.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/insert-delete-modify-query.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/run_import_qq_excel.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/hint.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/pip%20install%20xlrd.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/Import%20Successful.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/Import%20Successful%202.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/page-export-excel.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/zip.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/unzip-project.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/OpenProj.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/Project%20Interpreter.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/manage.py%20migrate.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/03/17/django-excel-tool/django-excel-tool/OK.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/New%20Project.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/Run%20manage.py.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/startapp%20CVE.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/INSTALLED_APPS.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/Model-Excel.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/makemigrations.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/migrate.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/createsuperuser.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/admin.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/insert-delete-modify-query.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/run_import_qq_excel.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/hint.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/pip%20install%20xlrd.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/Import%20Successful.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/Import%20Successful%202.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/page-export-excel.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/zip.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/unzip-project.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/OpenProj.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/Project%20Interpreter.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/manage.py%20migrate.png">
+<meta property="og:image" content="https://chenergy1991.github.io/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/OK.png">
 <meta property="og:updated_time" content="2018-12-17T10:23:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="可实现&quot;导入导出Excel&quot;的Django小应用">
@@ -145,13 +145,13 @@
 </ol>
 <p>#####3.1建立项目</p>
 <p>在PyCharm的<code>File/New Project</code>新建Django项目，如图所示。</p>
-<p><img src="django-excel-tool/New Project.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/New Project.png"></p>
 <p>比如我建了一个名为<code>P_QQ_Management</code>的项目。</p>
 <p>#####3.2建立应用</p>
 <p>每个Django项目可以包含多个Django应用。为了建立应用，可以使用PyCharm的<code>Tools/Run manage.py Task...</code>，如图所示。</p>
-<p><img src="django-excel-tool/Run manage.py.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/Run manage.py.png"></p>
 <p>比如说，我们想要创建一个名为<code>QQUser</code>的应用，在这个终端执行命令<code>startapp QQUser</code>，如图所示。</p>
-<p><img src="django-excel-tool/startapp CVE.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/startapp CVE.png"></p>
 <p>我们可以发现一个名为<code>QQUser</code>的应用在根目录生成了。</p>
 <p>#####3.3处理模型层</p>
 <p>设计模型可分为以下4个步骤：</p>
@@ -163,18 +163,18 @@
 </ol>
 <p>######3.3.1 配置项目INSTALLED_APPS</p>
 <p>要在<code>P_QQ_Management</code>项目中的<code>setting.py</code>中告诉Django需要安装应用app的模型，方法是打开<br><code>P_QQ_Management/settings.py</code>文件，找到其中的<code>INSTALLED_APPS</code>数组，在其中添加应用的名称<code>QQUser</code>，如图所示。</p>
-<p><img src="django-excel-tool/INSTALLED_APPS.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/INSTALLED_APPS.png"></p>
 <p>######3.3.2 模型定义</p>
 <p>打开<code>P_QQ_Management/QQUser/models.py</code>文件，在其中新建一个模型类QQUser用来定义“QQ用户信息”，代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">from __future__ import unicode_literals</span><br><span class="line"></span><br><span class="line">from django.db import models</span><br><span class="line">USER_TYPE_CHOICE = (</span><br><span class="line">    (&apos;黑名单&apos;, &apos;黑名单&apos;),</span><br><span class="line">    (&apos;白名单&apos;, &apos;白名单&apos;),</span><br><span class="line">    (&apos;未归档&apos;, &apos;未归档&apos;),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">class QQUser(models.Model):</span><br><span class="line">    QQ = models.CharField(&quot;QQ号&quot;, max_length=15)</span><br><span class="line">    NickName = models.CharField(&quot;QQ昵称&quot;, max_length=30)</span><br><span class="line">    UserType = models.CharField(&quot;用户类型&quot;, choices=USER_TYPE_CHOICE, default=USER_TYPE_CHOICE[2], max_length=50)</span><br><span class="line"></span><br><span class="line">    class Meta:</span><br><span class="line">        verbose_name = u&apos;QQ管理表&apos;</span><br><span class="line">        verbose_name_plural = u&quot;QQ管理表&quot;</span><br></pre></td></tr></table></figure>
 <p>用户的模型对应着这么一张Excel表，如图所示。</p>
-<p><img src="django-excel-tool/Model-Excel.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/Model-Excel.png"></p>
 <p>######3.3.3 生成数据移植文件 </p>
 <p>为了生成数据库移植文件，使用PyCharm的<code>Tools/Run manage.py Task...</code>，接着运行命令<code>makemigrations</code>，如图所示。</p>
-<p><img src="django-excel-tool/makemigrations.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/makemigrations.png"></p>
 <p>######3.3.4 移植到数据库</p>
 <p>在模型的修改过程中可以随时调用<code>makemigrations</code>生成中间移植文件。而当需要使移植文件生效、生成真实的数据库schema时，则需要调用manage.py的<code>migrate</code>命令是修改同步到数据库中。为此，使用PyCharm的<code>Tools/Run manage.py Task...</code>，接着运行命令<code>migrate</code>，如图所示。</p>
-<p><img src="django-excel-tool/migrate.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/migrate.png"></p>
 <p>此时，我们可以发现Django已经依据<code>QQUser/models.py</code>里定义的模型帮我们建好了数据表。</p>
 <p>在模型设计好后，可对之进行数据库的“增删改查”操作，而使用Django的管理界面实现这一目标将会很便捷。</p>
 <p>#####3.4使用管理界面</p>
@@ -182,28 +182,28 @@
 <p>首先需要将管理界面需要管理的模型类添加到<code>P_QQ_Management/QQUser/admin.py</code>文件中，代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">from __future__ import unicode_literals</span><br><span class="line">from django.contrib import admin</span><br><span class="line">from .models import QQUser</span><br><span class="line"></span><br><span class="line">class QQUserExcelToolAdmin(admin.ModelAdmin):</span><br><span class="line">    list_display = (&apos;QQ&apos;,&apos;NickName&apos;,&apos;UserType&apos;)</span><br><span class="line">    search_fields = (&apos;QQ&apos;,&apos;NickName&apos;,&apos;UserType&apos;)</span><br><span class="line">admin.site.register(QQUser, QQUserExcelToolAdmin)</span><br></pre></td></tr></table></figure>
 <p>在第一次使用管理员界面之前，需要通过manage.py工具的createsuperuser命令建立管理员用户，在命令运行的过程中按照提示输入管理员的用户名、邮箱地址、密码。如图所示。</p>
-<p><img src="django-excel-tool/createsuperuser.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/createsuperuser.png"></p>
 <p>此时，我们可以启动Django网站，并访问默认的管理员界面，如图所示。</p>
-<p><img src="django-excel-tool/admin.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/admin.png"></p>
 <p>接着，我们可以借由该管理后台对数据库进行增删改查了，如图所示。</p>
-<p><img src="django-excel-tool/insert-delete-modify-query.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/insert-delete-modify-query.png"></p>
 <p>为小程序加入“QQ用户信息”的管理模块的部分介绍完毕。接下来将介绍如何为小程序添加Excel信息导入功能。</p>
 <p>#####3.5 添加Excel导入功能</p>
 <p>为了将Excel里的QQ用户信息导入数据库，编写如下python脚本：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#-*-coding:utf-8 -*-</span><br><span class="line">import os</span><br><span class="line">os.environ.setdefault(&quot;DJANGO_SETTINGS_MODULE&quot;, &quot;P_QQ_Management.settings&quot;)</span><br><span class="line">import django</span><br><span class="line">django.setup()</span><br><span class="line"></span><br><span class="line">from QQUser.models import QQUser</span><br><span class="line">import xlrd</span><br><span class="line"></span><br><span class="line">def import_qq_excel():</span><br><span class="line">    try:</span><br><span class="line">        # 数据源：test-file.xls</span><br><span class="line">        data = xlrd.open_workbook(&quot;test-file.xls&quot;)</span><br><span class="line">        # 第一章工作表</span><br><span class="line">        table = data.sheets()[0]</span><br><span class="line">        nrows = table.nrows</span><br><span class="line">        print(&quot;开始将QQ信息导入数据库！&quot;)</span><br><span class="line">        for i in range(1, nrows):</span><br><span class="line">            item = table.row_values(i)</span><br><span class="line">            # QQ号：位于工作表第1列</span><br><span class="line">            QQ = str(int(item[0]))</span><br><span class="line">            print(QQ)</span><br><span class="line">            # 昵称：位于工作表第2列</span><br><span class="line">            NickName = item[1]</span><br><span class="line">            # 用户类别：：位于工作表第3列</span><br><span class="line">            UserType = item[2]</span><br><span class="line">            # 创建QQUser对象</span><br><span class="line">            qqUser = QQUser(QQ = QQ, NickName = NickName, UserType = UserType)</span><br><span class="line">            # 将QQUser对象保存到数据库中</span><br><span class="line">            qqUser.save()</span><br><span class="line">        print(&quot;QQ信息导入成功&quot;)</span><br><span class="line">    except Exception as e:</span><br><span class="line">        print(str(e))</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    import_qq_excel()</span><br></pre></td></tr></table></figure>
 <p>在PyCharm执行这段脚本时，（使用鼠标右键点击代码编辑区，在弹出的菜单中点击<code>Run &#39;import_qq_excel&#39;</code>），如图所示。</p>
-<p><img src="django-excel-tool/run_import_qq_excel.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/run_import_qq_excel.png"></p>
 <p>系统会提示<code>No module named xlrd</code>，缺少“xlrd”这个模块。</p>
-<p><img src="django-excel-tool/hint.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/hint.png"></p>
 <p>为了运行这段脚本，可以使用<code>pip</code>命令安装<code>xlrd</code>这个模块，如图所示。</p>
-<p><img src="django-excel-tool/pip install xlrd.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/pip install xlrd.png"></p>
 <p>继续在PyCharm中执行这段脚本时，即可将Excel导入数据库，如图所示。</p>
-<p><img src="django-excel-tool/Import Successful.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/Import Successful.png"></p>
 <p>在Django的管理平台中可以发现，Excel被存入数据库中了，如图所示。</p>
-<p><img src="django-excel-tool/Import Successful 2.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/Import Successful 2.png"></p>
 <p>#####3.6 添加Excel导出功能</p>
 <p>为了使得用户可以对“QQ用户信息”进行“Excel（CSV）导出”，可以仿造博客《<a href="https://www.jianshu.com/p/f52337daabe7" target="_blank" rel="noopener">Django admin后台导出Excel表格</a>》进行编码和配置，所实现出的效果如图所示。</p>
-<p><img src="django-excel-tool/page-export-excel.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/page-export-excel.png"></p>
 <p>我的做法如下：</p>
 <p>(1)编写<code>csvutil.py</code>，代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import csv, codecs</span><br><span class="line">from django.http import HttpResponse</span><br><span class="line">import sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(&apos;utf8&apos;)</span><br><span class="line"></span><br><span class="line">def export_as_csv_action(description=&apos;Export selected objects as CSV file&apos;, fields=None, exclude = None, header = True):</span><br><span class="line">    def export_as_csv(modeladmin, request, queryset):</span><br><span class="line">        opts = modeladmin.model._meta</span><br><span class="line">        if not fields:</span><br><span class="line">            field_names = [field for field in opts]</span><br><span class="line">        else:</span><br><span class="line">            field_names = fields</span><br><span class="line"></span><br><span class="line">        response = HttpResponse(content_type=&apos;text/csv&apos;)</span><br><span class="line">        response.write(codecs.BOM_UTF8)</span><br><span class="line">        response[&apos;Content-Disposition&apos;] = &apos;attachment; filename=&#123;&#125;.csv&apos;.format(opts.verbose_name.encode(&apos;utf-8&apos;))</span><br><span class="line">        writer = csv.writer(response)</span><br><span class="line">        if header:</span><br><span class="line">            cn_field_names = [&apos;QQ&apos;, &apos;昵称&apos;, &apos;用户类别&apos;]</span><br><span class="line"></span><br><span class="line">            writer.writerow(cn_field_names)</span><br><span class="line">        for obj in queryset:</span><br><span class="line">        #row = [getattr(obj, field)() if callable(getattr(obj, field)) else getattr(obj, field) for field in field_names]</span><br><span class="line">        #新增处理功能，比如处理时间的显示格式</span><br><span class="line">            row = []</span><br><span class="line">            for field in field_names:</span><br><span class="line">                value = getattr(obj, field).encode(&quot;utf8&quot;)</span><br><span class="line">#                if (field == &apos;publishing_time&apos;):</span><br><span class="line">#                    value = str(value)</span><br><span class="line">#                if isinstance(value, datetime.datetime):</span><br><span class="line">#                    value = value.strftime(&apos;%y-%m-%d&apos;)</span><br><span class="line">                row.append(value)</span><br><span class="line">            writer.writerow(row)</span><br><span class="line">        return response</span><br><span class="line">    export_as_csv.short_description = description</span><br><span class="line">    return export_as_csv</span><br></pre></td></tr></table></figure>
@@ -212,20 +212,20 @@
 <p>注：如果遇到“Django导出excel中文乱码解决方案”的问题，可以参照博客《<a href="http://www.cnblogs.com/413xiaol/p/6653459.html" target="_blank" rel="noopener">Django导出excel中文乱码解决方案</a>》。</p>
 <p>#####3.7 在其他电脑使用该Django小应用</p>
 <p>为了在其他电脑使用该Django小应用，可以采用以下方式：</p>
-<p>（1）将当前电脑下的Django小应用进行打包，生成<code>P_QQ_Management.zip</code>，如图所示。<br><img src="django-excel-tool/zip.png"></p>
+<p>（1）将当前电脑下的Django小应用进行打包，生成<code>P_QQ_Management.zip</code>，如图所示。<br><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/zip.png"></p>
 <p>（2）到目标电脑解压“P_QQ_Management.zip”，如图所示。</p>
-<p><img src="django-excel-tool/unzip-project.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/unzip-project.png"></p>
 <p>（3）使用PyCharm的<code>File/Open</code>打开该工程，如图所示。</p>
-<p><img src="django-excel-tool/OpenProj.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/OpenProj.png"></p>
 <p>（4）使用PyCharm的“File/Settings…”为该工程设置“Project Interpreter”，如图所示。</p>
-<p><img src="django-excel-tool/Project Interpreter.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/Project Interpreter.png"></p>
 <p>（5）使用PyCharm的<code>Terminal</code>如下执行脚本：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\P_QQ_Management&gt;python manage.py migrate</span><br></pre></td></tr></table></figure>
 <p>执行结果如图所示。</p>
-<p><img src="django-excel-tool/manage.py migrate.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/manage.py migrate.png"></p>
 <p>注：在执行这个命令的时候，可能会遇到“NameError: name ‘reload’ is not defined 问题”，此时可以参阅博客：<a href="https://blog.csdn.net/github_35160620/article/details/52206868。" target="_blank" rel="noopener">https://blog.csdn.net/github_35160620/article/details/52206868。</a></p>
 <p>（6）在PyCharm中启动<code>P_QQ_Management</code>项目，如图所示。</p>
-<p><img src="django-excel-tool/OK.png"></p>
+<p><img src="/chenergy1991.github.io//chenergy1991.github.io/2019/03/17/django-excel-tool/OK.png"></p>
 <p>####4.小总结</p>
 <ul>
 <li>“Python”（中文翻译“蟒蛇”）名副其实，在处理一些小问题时，显得“简单粗暴”；</li>
@@ -263,7 +263,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/17/django-excel-tool/" data-id="cjtcuamlx0006kgv1r7r579x8" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/17/django-excel-tool/" data-id="cjtdz3v600006dkv14tf6rylt" class="article-share-link">Share</a>
       
       
     </footer>
