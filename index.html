@@ -91,7 +91,7 @@
         <meta name="referrer" content="no-referrer">
 
 
-<h2 id="0x00-漏洞描述"><a href="#0x00-漏洞描述" class="headerlink" title="0x00 漏洞描述"></a>0x00 漏洞描述</h2><p>ZrLog 是使用 Java 开发的博客程序。<br>ZrLog 2.1.0产品后台存在文件写入漏洞，攻击者可以利用产品后台的“设置/错误页面编辑”功能进行文件写入。通过利用可进行存储型XSS漏洞攻击，或替换ZrLog网站的配置文件web.xml，致使网站崩溃；</p>
+<h2 id="0x00-漏洞描述"><a href="#0x00-漏洞描述" class="headerlink" title="0x00 漏洞描述"></a>0x00 漏洞描述</h2><p>ZrLog 是使用 Java 开发的博客程序。<br>ZrLog 2.1.0产品后台存在文件写入漏洞，攻击者可以利用产品后台的“设置/错误页面编辑”功能进行文件写入。通过利用可进行替换ZrLog网站的配置文件web.xml，致使网站崩溃；</p>
 <h2 id="0x01-漏洞存在的位置（代码级）"><a href="#0x01-漏洞存在的位置（代码级）" class="headerlink" title="0x01 漏洞存在的位置（代码级）"></a>0x01 漏洞存在的位置（代码级）</h2><p>该漏洞出现的文件路径为：\zrlog\web\src\main\java\com\zrlog\web\controller\admin\api\TemplateController.java，具体位置如下图所示。</p>
 <p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/TemplateController.java.png" alt="TemplateController.java.png"></p>
 <p>这段代码是网站管理员在网站后台的“设置/错误页面编辑/提交”处进行错误页面自定义的部分代码。可以发现file这个字符串由PathKit.getWebRootPath()和getPara(“file”)这两个字符串拼接而成。其中PathKit.getWebRootPath()的返回值是网站根目录的路径。跟进getPara(“file”)方法，如下图所示。</p>
@@ -104,8 +104,9 @@
 <p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/zrlog-admin.png" alt="zrlog-admin.png"></p>
 <p>2）攻击者使用BurpSuite抓取“错误页面编辑”的数据包；</p>
 <p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/edit-error-page.png" alt="edit-error-page.png"></p>
-<p>3）由上图可以发现，攻击者可以在发送Payload前更改文件名和文件内容。<br>攻击者使用BurpSuite修改“错误页面编辑”的数据包；</p>
-<p>4）攻击者可以通过覆盖zrlog网站的配置文件，使得zrlog网站崩溃；<br>Payload的关键为：<br>file=/WEB-INF/web.xml&amp;content=<br>发送Payload，如图所示。</p>
+<p>由上图可以发现，攻击者可以在发送Payload前更改文件名和文件内容。</p>
+<p>3）攻击者使用BurpSuite修改“错误页面编辑”的数据包；</p>
+<p>攻击者可以通过覆盖zrlog网站的配置文件，使得zrlog网站崩溃；<br>Payload的关键为：<br>file=/WEB-INF/web.xml&amp;content=<br>发送Payload，如图所示。</p>
 <p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/payload.png" alt="payload.png"></p>
 <p>查看zrlog的web.xml的内容，如图所示。</p>
 <p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/web.xml.png" alt="web.xml.png"></p>
@@ -116,7 +117,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/" data-id="cjuv83l9o0001ogv1jf9rhwgm" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/" data-id="cjuv8aad60003gov19x6ykhyq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -171,6 +172,9 @@
 <h4 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h4><ul>
 <li><a href="https://mp.weixin.qq.com/s/aw1X10cmqqlinzIpA6UrAw" target="_blank" rel="noopener">【安全预警】kindeditor文件上传漏洞</a></li>
 </ul>
+<h4 id="文件写入"><a href="#文件写入" class="headerlink" title="文件写入"></a>文件写入</h4><ul>
+<li><a href="https://chenergy1991.github.io/2019/04/24/ZrLog%E5%90%8E%E5%8F%B0%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5/">ZrLog后台文件写入</a></li>
+</ul>
 <h4 id="综合利用"><a href="#综合利用" class="headerlink" title="综合利用"></a>综合利用</h4><ul>
 <li><a href="https://mp.weixin.qq.com/s/5HsgDHEiwDACphfyzioFZw" target="_blank" rel="noopener">【安全研究】PHPMyWind CMS产品 任意密码重置漏洞研究分析</a></li>
 </ul>
@@ -181,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/MyInformationSecurityBlog/" data-id="cjuv83l9q0002ogv1pbb3rop1" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/MyInformationSecurityBlog/" data-id="cjuv8aaco0001gov10m8dvl6u" class="article-share-link">Share</a>
       
       
     </footer>
@@ -268,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/好的链接/" data-id="cjuv83lac0004ogv17cnb8nqa" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/好的链接/" data-id="cjuv8aadj0005gov1js9qrcx3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -323,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/how-to-use-jad/" data-id="cjuv83lab0003ogv1olgrd3a1" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/how-to-use-jad/" data-id="cjuv8aadd0004gov1vpuvp3xn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -415,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2018-1261/" data-id="cjuv83lad0005ogv161vlha5h" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2018-1261/" data-id="cjuv8aacq0002gov1bgxwkd48" class="article-share-link">Share</a>
       
       
     </footer>
@@ -596,7 +600,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/django-excel-tool/" data-id="cjuv83lb30006ogv1mr7x7wiz" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/django-excel-tool/" data-id="cjuv8aady0006gov1b8n0cdp8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -700,7 +704,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2017-7275/" data-id="cjuv83l9b0000ogv14d3m4nm8" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2017-7275/" data-id="cjuv8aacd0000gov19pf6u4xg" class="article-share-link">Share</a>
       
       
     </footer>

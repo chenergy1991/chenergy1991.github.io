@@ -7,12 +7,12 @@
   
   <title>ZrLog后台文件写入 | Jake&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0x00 漏洞描述ZrLog 是使用 Java 开发的博客程序。ZrLog 2.1.0产品后台存在文件写入漏洞，攻击者可以利用产品后台的“设置/错误页面编辑”功能进行文件写入。通过利用可进行存储型XSS漏洞攻击，或替换ZrLog网站的配置文件web.xml，致使网站崩溃； 0x01 漏洞存在的位置（代码级）该漏洞出现的文件路径为：\zrlog\web\src\main\java\com\zr">
+  <meta name="description" content="0x00 漏洞描述ZrLog 是使用 Java 开发的博客程序。ZrLog 2.1.0产品后台存在文件写入漏洞，攻击者可以利用产品后台的“设置/错误页面编辑”功能进行文件写入。通过利用可进行替换ZrLog网站的配置文件web.xml，致使网站崩溃； 0x01 漏洞存在的位置（代码级）该漏洞出现的文件路径为：\zrlog\web\src\main\java\com\zrlog\web\cont">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ZrLog后台文件写入">
 <meta property="og:url" content="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/index.html">
 <meta property="og:site_name" content="Jake&#39;s blog">
-<meta property="og:description" content="0x00 漏洞描述ZrLog 是使用 Java 开发的博客程序。ZrLog 2.1.0产品后台存在文件写入漏洞，攻击者可以利用产品后台的“设置/错误页面编辑”功能进行文件写入。通过利用可进行存储型XSS漏洞攻击，或替换ZrLog网站的配置文件web.xml，致使网站崩溃； 0x01 漏洞存在的位置（代码级）该漏洞出现的文件路径为：\zrlog\web\src\main\java\com\zr">
+<meta property="og:description" content="0x00 漏洞描述ZrLog 是使用 Java 开发的博客程序。ZrLog 2.1.0产品后台存在文件写入漏洞，攻击者可以利用产品后台的“设置/错误页面编辑”功能进行文件写入。通过利用可进行替换ZrLog网站的配置文件web.xml，致使网站崩溃； 0x01 漏洞存在的位置（代码级）该漏洞出现的文件路径为：\zrlog\web\src\main\java\com\zrlog\web\cont">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/TemplateController.java.png">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/getParameter.png">
@@ -22,10 +22,10 @@
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/payload.png">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/web.xml.png">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/view-webpage.png">
-<meta property="og:updated_time" content="2019-04-24T12:57:04.141Z">
+<meta property="og:updated_time" content="2019-04-24T13:02:24.005Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZrLog后台文件写入">
-<meta name="twitter:description" content="0x00 漏洞描述ZrLog 是使用 Java 开发的博客程序。ZrLog 2.1.0产品后台存在文件写入漏洞，攻击者可以利用产品后台的“设置/错误页面编辑”功能进行文件写入。通过利用可进行存储型XSS漏洞攻击，或替换ZrLog网站的配置文件web.xml，致使网站崩溃； 0x01 漏洞存在的位置（代码级）该漏洞出现的文件路径为：\zrlog\web\src\main\java\com\zr">
+<meta name="twitter:description" content="0x00 漏洞描述ZrLog 是使用 Java 开发的博客程序。ZrLog 2.1.0产品后台存在文件写入漏洞，攻击者可以利用产品后台的“设置/错误页面编辑”功能进行文件写入。通过利用可进行替换ZrLog网站的配置文件web.xml，致使网站崩溃； 0x01 漏洞存在的位置（代码级）该漏洞出现的文件路径为：\zrlog\web\src\main\java\com\zrlog\web\cont">
 <meta name="twitter:image" content="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/TemplateController.java.png">
   
     <link rel="alternate" href="/atom.xml" title="Jake&#39;s blog" type="application/atom+xml">
@@ -102,7 +102,7 @@
         <meta name="referrer" content="no-referrer">
 
 
-<h2 id="0x00-漏洞描述"><a href="#0x00-漏洞描述" class="headerlink" title="0x00 漏洞描述"></a>0x00 漏洞描述</h2><p>ZrLog 是使用 Java 开发的博客程序。<br>ZrLog 2.1.0产品后台存在文件写入漏洞，攻击者可以利用产品后台的“设置/错误页面编辑”功能进行文件写入。通过利用可进行存储型XSS漏洞攻击，或替换ZrLog网站的配置文件web.xml，致使网站崩溃；</p>
+<h2 id="0x00-漏洞描述"><a href="#0x00-漏洞描述" class="headerlink" title="0x00 漏洞描述"></a>0x00 漏洞描述</h2><p>ZrLog 是使用 Java 开发的博客程序。<br>ZrLog 2.1.0产品后台存在文件写入漏洞，攻击者可以利用产品后台的“设置/错误页面编辑”功能进行文件写入。通过利用可进行替换ZrLog网站的配置文件web.xml，致使网站崩溃；</p>
 <h2 id="0x01-漏洞存在的位置（代码级）"><a href="#0x01-漏洞存在的位置（代码级）" class="headerlink" title="0x01 漏洞存在的位置（代码级）"></a>0x01 漏洞存在的位置（代码级）</h2><p>该漏洞出现的文件路径为：\zrlog\web\src\main\java\com\zrlog\web\controller\admin\api\TemplateController.java，具体位置如下图所示。</p>
 <p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/TemplateController.java.png" alt="TemplateController.java.png"></p>
 <p>这段代码是网站管理员在网站后台的“设置/错误页面编辑/提交”处进行错误页面自定义的部分代码。可以发现file这个字符串由PathKit.getWebRootPath()和getPara(“file”)这两个字符串拼接而成。其中PathKit.getWebRootPath()的返回值是网站根目录的路径。跟进getPara(“file”)方法，如下图所示。</p>
@@ -115,8 +115,9 @@
 <p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/zrlog-admin.png" alt="zrlog-admin.png"></p>
 <p>2）攻击者使用BurpSuite抓取“错误页面编辑”的数据包；</p>
 <p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/edit-error-page.png" alt="edit-error-page.png"></p>
-<p>3）由上图可以发现，攻击者可以在发送Payload前更改文件名和文件内容。<br>攻击者使用BurpSuite修改“错误页面编辑”的数据包；</p>
-<p>4）攻击者可以通过覆盖zrlog网站的配置文件，使得zrlog网站崩溃；<br>Payload的关键为：<br>file=/WEB-INF/web.xml&amp;content=<br>发送Payload，如图所示。</p>
+<p>由上图可以发现，攻击者可以在发送Payload前更改文件名和文件内容。</p>
+<p>3）攻击者使用BurpSuite修改“错误页面编辑”的数据包；</p>
+<p>攻击者可以通过覆盖zrlog网站的配置文件，使得zrlog网站崩溃；<br>Payload的关键为：<br>file=/WEB-INF/web.xml&amp;content=<br>发送Payload，如图所示。</p>
 <p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/payload.png" alt="payload.png"></p>
 <p>查看zrlog的web.xml的内容，如图所示。</p>
 <p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/web.xml.png" alt="web.xml.png"></p>
@@ -127,7 +128,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/" data-id="cjuv83l9o0001ogv1jf9rhwgm" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/" data-id="cjuv8aad60003gov19x6ykhyq" class="article-share-link">Share</a>
       
       
     </footer>
