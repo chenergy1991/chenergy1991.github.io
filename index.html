@@ -66,6 +66,66 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-ZrLog后台文件写入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/24/ZrLog后台文件写入/" class="article-date">
+  <time datetime="2019-04-24T12:33:27.791Z" itemprop="datePublished">2019-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/24/ZrLog后台文件写入/">ZrLog后台文件写入</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <meta name="referrer" content="no-referrer">
+
+
+<h2 id="0x00-漏洞描述"><a href="#0x00-漏洞描述" class="headerlink" title="0x00 漏洞描述"></a>0x00 漏洞描述</h2><p>ZrLog 是使用 Java 开发的博客程序。<br>ZrLog 2.1.0产品后台存在文件写入漏洞，攻击者可以利用产品后台的“设置/错误页面编辑”功能进行文件写入。通过利用可进行存储型XSS漏洞攻击，或替换ZrLog网站的配置文件web.xml，致使网站崩溃；</p>
+<h2 id="0x01-漏洞存在的位置（代码级）"><a href="#0x01-漏洞存在的位置（代码级）" class="headerlink" title="0x01 漏洞存在的位置（代码级）"></a>0x01 漏洞存在的位置（代码级）</h2><p>该漏洞出现的文件路径为：\zrlog\web\src\main\java\com\zrlog\web\controller\admin\api\TemplateController.java，具体位置如下图所示。</p>
+<p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/TemplateController.java.png" alt="TemplateController.java.png"></p>
+<p>这段代码是网站管理员在网站后台的“设置/错误页面编辑/提交”处进行错误页面自定义的部分代码。可以发现file这个字符串由PathKit.getWebRootPath()和getPara(“file”)这两个字符串拼接而成。其中PathKit.getWebRootPath()的返回值是网站根目录的路径。跟进getPara(“file”)方法，如下图所示。</p>
+<p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/getParameter.png" alt="getParameter(name).png"></p>
+<p>可以发现该方法的返回值是this.request.getParameter(name)，而this.request是javax.servlet.http.HttpServletRequest对象，如下图所示。</p>
+<p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/HttpServletRequest.png" alt="HttpServletRequest.png"></p>
+<p>由此可见，这套CMS在做“错误页面编辑”时，未进行任何过滤就进行了文件路径和文件名的拼接。</p>
+<h2 id="0x02-漏洞验证或利用工具及使用说明（PoC、EXP）"><a href="#0x02-漏洞验证或利用工具及使用说明（PoC、EXP）" class="headerlink" title="0x02 漏洞验证或利用工具及使用说明（PoC、EXP）"></a>0x02 漏洞验证或利用工具及使用说明（PoC、EXP）</h2><p>漏洞验证或利用工具为：BurpSuite、火狐浏览器；<br>使用说明如下：<br>漏洞验证过程分为以下4步：<br>1）攻击者登录ZrLog的管理后台；<br>2）攻击者使用BurpSuite抓取“错误页面编辑”的数据包；<br>3）攻击者使用BurpSuite修改“错误页面编辑”的数据包；<br>4）攻击者发送数据包。</p>
+<p>具体如下：<br>1）攻击者登录ZrLog的管理后台；</p>
+<p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/zrlog-admin.png" alt="zrlog-admin.png"></p>
+<p>2）攻击者使用BurpSuite抓取“错误页面编辑”的数据包；</p>
+<p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/edit-error-page.png" alt="edit-error-page.png"></p>
+<p>3）由上图可以发现，攻击者可以在发送Payload前更改文件名和文件内容。<br>攻击者使用BurpSuite修改“错误页面编辑”的数据包；</p>
+<p>4）攻击者可以通过覆盖zrlog网站的配置文件，使得zrlog网站崩溃；<br>Payload的关键为：<br>file=/WEB-INF/web.xml&amp;content=<br>发送Payload，如图所示。</p>
+<p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/payload.png" alt="payload.png"></p>
+<p>查看zrlog的web.xml的内容，如图所示。</p>
+<p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/web.xml.png" alt="web.xml.png"></p>
+<p>由上图可以发现，web.xml的内容被置空了。<br>访问<a href="http://192.168.114.238:8080/zrlog/，如图所示。" target="_blank" rel="noopener">http://192.168.114.238:8080/zrlog/，如图所示。</a></p>
+<p><img src="//chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/view-webpage.png" alt="view-webpage.png"></p>
+<p>由上图可以发现，该zrlog博客系统已经瘫痪。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/" data-id="cjuv83l9o0001ogv1jf9rhwgm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-MyInformationSecurityBlog" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/24/MyInformationSecurityBlog/" class="article-date">
@@ -121,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/MyInformationSecurityBlog/" data-id="cjtur1dtt000034v17et423rx" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/MyInformationSecurityBlog/" data-id="cjuv83l9q0002ogv1pbb3rop1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -208,7 +268,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/好的链接/" data-id="cjtur1due000434v1nitjjhdu" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/好的链接/" data-id="cjuv83lac0004ogv17cnb8nqa" class="article-share-link">Share</a>
       
       
     </footer>
@@ -263,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/how-to-use-jad/" data-id="cjtur1dua000334v1qmtuu6ok" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/how-to-use-jad/" data-id="cjuv83lab0003ogv1olgrd3a1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -355,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2018-1261/" data-id="cjtur1du7000234v1thrtscao" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2018-1261/" data-id="cjuv83lad0005ogv161vlha5h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -536,7 +596,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/django-excel-tool/" data-id="cjtur1dv4000534v11ammv5wg" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/django-excel-tool/" data-id="cjuv83lb30006ogv1mr7x7wiz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -640,7 +700,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2017-7275/" data-id="cjtur1du5000134v1xf2oo3go" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2017-7275/" data-id="cjuv83l9b0000ogv14d3m4nm8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -668,7 +728,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -679,6 +739,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/04/24/ZrLog后台文件写入/">ZrLog后台文件写入</a>
+          </li>
         
           <li>
             <a href="/2019/03/24/MyInformationSecurityBlog/">我的网络安全技术博客（原创&amp;改编）</a>
@@ -694,10 +758,6 @@
         
           <li>
             <a href="/2019/03/24/CVE-2018-1261/">CVE-2018-1261（Spring Integration Zip不安全解压漏洞）复现和分析</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/24/django-excel-tool/">可实现&#34;导入导出Excel&#34;的Django小应用</a>
           </li>
         
       </ul>
