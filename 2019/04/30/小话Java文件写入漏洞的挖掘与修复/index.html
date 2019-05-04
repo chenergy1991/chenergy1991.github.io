@@ -7,12 +7,12 @@
   
   <title>小话Java文件写入漏洞的挖掘与修复 | Jake&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0x00 前言“文件写入漏洞”是在Java Web应用中比较常见的一种漏洞。该漏洞的PoC如下： 这种漏洞的原因在于：部分程序在写入文件时，读取文件的参数filename直接在请求里传递，后台程序获取到这个文件路径后直接读取返回。问题在于这个参数是用户可控的，攻击者直接传入想要读取的文件路径即可利用。 小编前段时间在ZrLog 2.1.0这套Java博客系统的后台发现了一个文件写入漏洞，之后">
+  <meta name="description" content="0x00 前言“文件写入漏洞”是在Java Web应用中比较常见的一种漏洞。这种漏洞的原因在于：部分程序在写入文件时，读取文件的参数filename直接在请求里传递，后台程序获取到这个文件路径后直接读取返回。问题在于这个参数是用户可控的，攻击者直接传入想要读取的文件路径即可利用。 该漏洞的PoC如下： 123456789101112131415161718import java.io.Fil">
 <meta property="og:type" content="article">
 <meta property="og:title" content="小话Java文件写入漏洞的挖掘与修复">
 <meta property="og:url" content="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/index.html">
 <meta property="og:site_name" content="Jake&#39;s blog">
-<meta property="og:description" content="0x00 前言“文件写入漏洞”是在Java Web应用中比较常见的一种漏洞。该漏洞的PoC如下： 这种漏洞的原因在于：部分程序在写入文件时，读取文件的参数filename直接在请求里传递，后台程序获取到这个文件路径后直接读取返回。问题在于这个参数是用户可控的，攻击者直接传入想要读取的文件路径即可利用。 小编前段时间在ZrLog 2.1.0这套Java博客系统的后台发现了一个文件写入漏洞，之后">
+<meta property="og:description" content="0x00 前言“文件写入漏洞”是在Java Web应用中比较常见的一种漏洞。这种漏洞的原因在于：部分程序在写入文件时，读取文件的参数filename直接在请求里传递，后台程序获取到这个文件路径后直接读取返回。问题在于这个参数是用户可控的，攻击者直接传入想要读取的文件路径即可利用。 该漏洞的PoC如下： 123456789101112131415161718import java.io.Fil">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/TemplateController.java.png">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/getPara.png">
@@ -31,10 +31,10 @@
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/start%20commit.png">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/Fix%2049.png">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/commit.png">
-<meta property="og:updated_time" content="2019-05-02T21:20:00.704Z">
+<meta property="og:updated_time" content="2019-05-04T01:30:01.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小话Java文件写入漏洞的挖掘与修复">
-<meta name="twitter:description" content="0x00 前言“文件写入漏洞”是在Java Web应用中比较常见的一种漏洞。该漏洞的PoC如下： 这种漏洞的原因在于：部分程序在写入文件时，读取文件的参数filename直接在请求里传递，后台程序获取到这个文件路径后直接读取返回。问题在于这个参数是用户可控的，攻击者直接传入想要读取的文件路径即可利用。 小编前段时间在ZrLog 2.1.0这套Java博客系统的后台发现了一个文件写入漏洞，之后">
+<meta name="twitter:description" content="0x00 前言“文件写入漏洞”是在Java Web应用中比较常见的一种漏洞。这种漏洞的原因在于：部分程序在写入文件时，读取文件的参数filename直接在请求里传递，后台程序获取到这个文件路径后直接读取返回。问题在于这个参数是用户可控的，攻击者直接传入想要读取的文件路径即可利用。 该漏洞的PoC如下： 123456789101112131415161718import java.io.Fil">
 <meta name="twitter:image" content="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/TemplateController.java.png">
   
     <link rel="alternate" href="/atom.xml" title="Jake&#39;s blog" type="application/atom+xml">
@@ -111,11 +111,13 @@
         <meta name="referrer" content="no-referrer">
 
 
-<h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>“文件写入漏洞”是在Java Web应用中比较常见的一种漏洞。该漏洞的PoC如下：</p>
-<p>这种漏洞的原因在于：部分程序在写入文件时，读取文件的参数filename直接在请求里传递，后台程序获取到这个文件路径后直接读取返回。问题在于这个参数是用户可控的，攻击者直接传入想要读取的文件路径即可利用。</p>
-<p>小编前段时间在ZrLog 2.1.0这套Java博客系统的后台发现了一个文件写入漏洞，之后也在ZrLog的GitHub主页提了一个issue。不久后，官方推出的2.1.1版修复了这一漏洞。小编在这个过程中学习了一些东西，于是记了这篇笔记，请帮我指正！</p>
+<h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>“文件写入漏洞”是在Java Web应用中比较常见的一种漏洞。这种漏洞的原因在于：部分程序在写入文件时，读取文件的参数filename直接在请求里传递，后台程序获取到这个文件路径后直接读取返回。问题在于这个参数是用户可控的，攻击者直接传入想要读取的文件路径即可利用。</p>
+<p>该漏洞的PoC如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import java.io.File;</span><br><span class="line">public class Tester &#123;</span><br><span class="line">    public static void testPath() throws Exception&#123;</span><br><span class="line">        File filename = new File(&quot;..\\src\\testPath.txt&quot;);</span><br><span class="line">        // Java 一般路径 getPath()、 绝对路径 getAbsolutePath() 和规范路径 getCanonicalPath() 不同。</span><br><span class="line">        System.out.println(filename.getPath());</span><br><span class="line">        System.out.println(filename.getAbsolutePath());</span><br><span class="line">        System.out.println(filename.getCanonicalPath());</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        try&#123;</span><br><span class="line">            testPath();</span><br><span class="line">        &#125;</span><br><span class="line">        catch (Exception e)&#123;</span><br><span class="line">            System.out.println(e.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该PoC的执行结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">..\src\testPath.txt</span><br><span class="line">D:\eclipse_workspace\P_FILE_DEMO\..\src\testPath.txt</span><br><span class="line">D:\eclipse_workspace\src\testPath.txt</span><br></pre></td></tr></table></figure></p>
+<p>小编前段时间在ZrLog 2.1.0这套Java博客系统的后台发现了一个文件写入漏洞，之后也在ZrLog的GitHub主页提了一个issue。不久后，官方推出的2.1.1版修复了这一漏洞。小编在这个过程中学习了一些东西，于是记了这篇笔记。请帮我指正！</p>
 <p>这边博客将包含以下内容：</p>
-<p>1）漏洞描述<br>2）漏洞出现的位置<br>3）漏洞复现<br>4）漏洞修复<br>5）反思</p>
+<p>1）漏洞描述<br>2）漏洞出现的位置<br>3）漏洞复现<br>4）漏洞修复<br>5）小总结</p>
 <h2 id="0x01-漏洞描述"><a href="#0x01-漏洞描述" class="headerlink" title="0x01 漏洞描述"></a>0x01 漏洞描述</h2><p>ZrLog 是使用 Java 开发的博客程序。<br>ZrLog 2.1.0产品后台存在文件写入漏洞，攻击者可以利用产品后台的“设置/错误页面编辑”功能进行文件写入。通过利用该漏洞，攻击者可以进行“文件的跨目录写入”，甚至替换ZrLog网站的配置文件web.xml，致使网站崩溃。</p>
 <h2 id="0x02-漏洞出现的位置"><a href="#0x02-漏洞出现的位置" class="headerlink" title="0x02 漏洞出现的位置"></a>0x02 漏洞出现的位置</h2><p>该漏洞出现的文件路径为：\zrlog\web\src\main\java\com\zrlog\web\controller\admin\api\TemplateController.java，具体位置如下图所示。</p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/TemplateController.java.png" alt="TemplateController.java.png"></p>
@@ -161,16 +163,18 @@
 <p>修复方案不再直接拼接getPara(String)方法，而是拼接getAndCheckInputFile()方法的返回值。<br>具体来看该方法的实现方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private String getAndCheckInputFilePath() throws IllegalAccessException &#123;</span><br><span class="line">     String filePath = getPara(&quot;path&quot;);</span><br><span class="line">     return checkByWhiteList(filePath);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
 <p>该方法调用了方法checkByWhiteList(String)对HTTP请求参数filePath做处理。继续阅读checkByWhiteList(String)方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private String checkByWhiteList(String filePath) throws IllegalAccessException &#123;</span><br><span class="line">      if (filePath.contains(&quot;../&quot;)) &#123;</span><br><span class="line">          throw new IllegalAccessException(&quot;&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      if(!filePath.startsWith(&quot;/error&quot;) &amp;&amp; !filePath.startsWith(&quot;/include&quot;))&#123;</span><br><span class="line">          throw new IllegalAccessException(&quot;&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      return filePath;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
 <p>该方法包含了两个if判断，其含义是如果“文件路径包含了“../”或者文件路径不以“/error”结尾，则抛出“IllegalAccessException”异常。</p>
+<p>注：这次commit也修复了这个issue的任意文件读取漏洞：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/94fzb/zrlog/issues/46</span><br></pre></td></tr></table></figure></p>
 <h2 id="0x05-小总结"><a href="#0x05-小总结" class="headerlink" title="0x05 小总结"></a>0x05 小总结</h2><ol>
 <li>在挖掘“文件写入漏洞”的时候，可以考虑采用“黑白盒测试相结合”的方式（先在可能触发文件写入漏洞的点，借用BurpSuite等工具进行测试。接着，进行代码审计）；</li>
 <li>为了解某开源程序是否存在漏洞，可以查看其GitHub等平台上的“issue”或者“commit”(有些有经验的漏洞挖掘者可能通过官方更新逆推出旧版本的漏洞)；</li>
-<li></li>
+<li>应为系统的目录赋予合适的读写权限，防止黑客使用包含 ../序列的参数来指定位于特定目录之外的文件。</li>
+<li>在ZIP文件提取等场景下，也可能出现“提取出的文件标准路径落在解压的目标目录之外”的问题，比如CVE-2018-1261（Spring Integration Zip不安全解压漏洞）……</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/" data-id="cjv8tvquw00077sv156d2ql53" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/" data-id="cjv8tykn90008hcv1r4vghrx3" class="article-share-link">Share</a>
       
       
     </footer>
