@@ -66,6 +66,100 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-小话Java文件写入漏洞的挖掘与修复" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/30/小话Java文件写入漏洞的挖掘与修复/" class="article-date">
+  <time datetime="2019-04-30T14:51:22.350Z" itemprop="datePublished">2019-04-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/30/小话Java文件写入漏洞的挖掘与修复/">小话Java文件写入漏洞的挖掘与修复</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <meta name="referrer" content="no-referrer">
+
+
+<h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>“文件写入漏洞”是在Java Web应用中比较常见的一种漏洞。该漏洞的PoC如下：</p>
+<p>这种漏洞的原因在于：部分程序在写入文件时，读取文件的参数filename直接在请求里传递，后台程序获取到这个文件路径后直接读取返回。问题在于这个参数是用户可控的，攻击者直接传入想要读取的文件路径即可利用。</p>
+<p>小编前段时间在ZrLog 2.1.0这套Java博客系统的后台发现了一个文件写入漏洞，之后也在ZrLog的GitHub主页提了一个issue。不久后，官方推出的2.1.1版修复了这一漏洞。小编在这个过程中学习了一些东西，于是记了这篇笔记，请帮我指正！</p>
+<p>这边博客将包含以下内容：</p>
+<p>1）漏洞描述<br>2）漏洞出现的位置<br>3）漏洞复现<br>4）漏洞修复<br>5）反思</p>
+<h2 id="0x01-漏洞描述"><a href="#0x01-漏洞描述" class="headerlink" title="0x01 漏洞描述"></a>0x01 漏洞描述</h2><p>ZrLog 是使用 Java 开发的博客程序。<br>ZrLog 2.1.0产品后台存在文件写入漏洞，攻击者可以利用产品后台的“设置/错误页面编辑”功能进行文件写入。通过利用该漏洞，攻击者可以进行“文件的跨目录写入”，甚至替换ZrLog网站的配置文件web.xml，致使网站崩溃。</p>
+<h2 id="0x02-漏洞出现的位置"><a href="#0x02-漏洞出现的位置" class="headerlink" title="0x02 漏洞出现的位置"></a>0x02 漏洞出现的位置</h2><p>该漏洞出现的文件路径为：\zrlog\web\src\main\java\com\zrlog\web\controller\admin\api\TemplateController.java，具体位置如下图所示。</p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/TemplateController.java.png" alt="TemplateController.java.png"></p>
+<p>这段代码是网站管理员在网站后台的“设置/错误页面编辑/提交”处进行错误页面自定义的部分代码。可以发现file这个字符串由PathKit.getWebRootPath()和getPara(“file”)这两个字符串拼接而成。其中PathKit.getWebRootPath()的返回值是网站根目录的路径。跟进getPara(“file”)方法，如下图所示。</p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/getPara.png" alt="getPara.png"></p>
+<p>可以发现该方法的返回值是this.request.getParameter(name)，而this.request是javax.servlet.http.HttpServletRequest对象，如下图所示。</p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/request.png" alt="request.png"></p>
+<p>由此可见，这套CMS在做“错误页面编辑”时，未进行任何过滤就进行了文件路径和文件名的拼接。</p>
+<h2 id="0x03-漏洞复现"><a href="#0x03-漏洞复现" class="headerlink" title="0x03 漏洞复现"></a>0x03 漏洞复现</h2><p>漏洞验证或利用工具为：BurpSuite、火狐浏览器；<br>使用说明如下：<br>漏洞验证过程分为以下4步：<br>1）攻击者登录ZrLog的管理后台；<br>2）攻击者使用BurpSuite抓取“错误页面编辑”的数据包；<br>3）攻击者使用BurpSuite修改“错误页面编辑”的数据包；<br>4）攻击者发送数据包。</p>
+<p>具体如下：<br>1）攻击者登录ZrLog的管理后台；</p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/zrlog-admin.png" alt="zrlog-admin.png"></p>
+<p>2）攻击者使用BurpSuite抓取“错误页面编辑”的数据包；</p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/403.jpg" alt="403.jpg"></p>
+<p>3）由上图可以发现，攻击者可以在发送Payload前更改文件名和文件内容。<br>攻击者使用BurpSuite修改“错误页面编辑”的数据包；<br>例1，进行包含恶意Javascript脚本的html文件写入<br>Payload的关键为：<br>file=%2Ferror%2Fbadegg.html&amp;content=<script>alert(document.cookie)</script><br>发送Payload，如图所示。</p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/storedxss.jpg" alt="storedxss.jpg"></p>
+<p>在浏览器访问<a href="http://192.168.42.156:8080/zrlog/error/badegg.html，如图所示。" target="_blank" rel="noopener">http://192.168.42.156:8080/zrlog/error/badegg.html，如图所示。</a></p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/badegg.html.png" alt="badegg.html.png"></p>
+<p>由上图可以发现，攻击者可以通过修改文件名和文件内容，进行存储型xss攻击。</p>
+<p>例2，进行包含“../”的跨目录文件写入<br>首先，在zrlog的网站根目录写入badegg.html，Payload的关键为：<br>file=/badegg.html&amp;content=<script>alert(document.cookie)</script><br>发送Payload，如图所示。</p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/path1.jpg" alt="path1.jpg"></p>
+<p>访问<a href="http://192.168.42.156:8080/zrlog/badegg.html，如图所示。" target="_blank" rel="noopener">http://192.168.42.156:8080/zrlog/badegg.html，如图所示。</a></p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/path1-badegg.png" alt="path1-badegg.png"></p>
+<p>接着，跨出zrlog的网站根目录写入safedog.html，Payload的关键为：<br>file=../../ROOT/badegg.html&amp;content=<script>alert(document.cookie)</script><br>发送Payload，如图所示。</p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/path2.jpg" alt="path2.jpg"></p>
+<p>访问<a href="http://192.168.42.156:8080/badegg.html，如图所示。" target="_blank" rel="noopener">http://192.168.42.156:8080/badegg.html，如图所示。</a></p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/path2-badegg.jpg" alt="path2-badegg.jpg"></p>
+<p>由上图可以发现，badegg.html的存储路径跳出了网站zrlog的根目录，badegg.html被写<br>入了Tomcat的webapps/ROOT目录。</p>
+<p>例3，覆盖zrlog网站的配置文件，使得zrlog网站崩溃<br>Payload的关键为：<br>file=/WEB-INF/web.xml&amp;content=<br>发送Payload，如图所示。</p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/web.xml.jpg" alt="web.xml.jpg"></p>
+<p>查看zrlog的web.xml的内容，如图所示。</p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/web.xmlisempty.png" alt="web.xmlisempty.png"></p>
+<p>由上图可以发现，web.xml的内容被置空了。</p>
+<p>访问<a href="http://192.168.42.156:8080/zrlog/，如图所示。" target="_blank" rel="noopener">http://192.168.42.156:8080/zrlog/，如图所示。</a></p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/error404.png" alt="error404.png"></p>
+<p>由上图可以发现，该zrlog博客系统已经瘫痪。</p>
+<h2 id="0x04-漏洞修复"><a href="#0x04-漏洞修复" class="headerlink" title="0x04 漏洞修复"></a>0x04 漏洞修复</h2><p>在ZrLog 2.1.1版本中，这一文件写入漏洞已经被修复，具体详情可参见：<br><a href="https://github.com/94fzb/zrlog/commit/bc6d43fcc6e2532433edfd63a8bbd1fb12611245" target="_blank" rel="noopener">https://github.com/94fzb/zrlog/commit/bc6d43fcc6e2532433edfd63a8bbd1fb12611245</a><br>如图所示。</p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/start commit.png" alt="start commit.png"></p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/Fix 49.png" alt="Fix 49.png"></p>
+<p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/commit.png" alt="commit.png"></p>
+<p>经过查看这一commit，可以发现，开发者修改了出现问题的saveFile方法。原来的做法是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String file = PathKit.getWebRootPath() + getPara(&quot;file&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>这一做法直接将getPara(String)方法的返回值拼接到PathKit.getWebRootPath()方法的返回值之后。</p>
+<p>而修复方案是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String filePath = getAndCheckInputFile(); String file = PathKit.getWebRootPath() + filePath;</span><br></pre></td></tr></table></figure></p>
+<p>修复方案不再直接拼接getPara(String)方法，而是拼接getAndCheckInputFile()方法的返回值。<br>具体来看该方法的实现方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private String getAndCheckInputFilePath() throws IllegalAccessException &#123;</span><br><span class="line">     String filePath = getPara(&quot;path&quot;);</span><br><span class="line">     return checkByWhiteList(filePath);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>该方法调用了方法checkByWhiteList(String)对HTTP请求参数filePath做处理。继续阅读checkByWhiteList(String)方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private String checkByWhiteList(String filePath) throws IllegalAccessException &#123;</span><br><span class="line">      if (filePath.contains(&quot;../&quot;)) &#123;</span><br><span class="line">          throw new IllegalAccessException(&quot;&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      if(!filePath.startsWith(&quot;/error&quot;) &amp;&amp; !filePath.startsWith(&quot;/include&quot;))&#123;</span><br><span class="line">          throw new IllegalAccessException(&quot;&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      return filePath;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>该方法包含了两个if判断，其含义是如果“文件路径包含了“../”或者文件路径不以“/error”结尾，则抛出“IllegalAccessException”异常。</p>
+<h2 id="0x05-小总结"><a href="#0x05-小总结" class="headerlink" title="0x05 小总结"></a>0x05 小总结</h2><ol>
+<li>在挖掘“文件写入漏洞”的时候，可以考虑采用“黑白盒测试相结合”的方式（先在可能触发文件写入漏洞的点，借用BurpSuite等工具进行测试。接着，进行代码审计）；</li>
+<li>为了解某开源程序是否存在漏洞，可以查看其GitHub等平台上的“issue”或者“commit”(有些有经验的漏洞挖掘者可能通过官方更新逆推出旧版本的漏洞)；</li>
+<li></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/" data-id="cjv8tvquw00077sv156d2ql53" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-yaml.load反序列化漏洞" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/04/27/yaml.load反序列化漏洞/" class="article-date">
@@ -114,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/04/27/yaml.load反序列化漏洞/" data-id="cjuz1ru7s0005rov1a1tfk843" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/04/27/yaml.load反序列化漏洞/" data-id="cjv8tvqur00067sv13lwxcwmh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -177,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/" data-id="cjuz1ru7c0003rov1mxcapnhu" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/04/24/ZrLog后台文件写入/" data-id="cjv8tvqu700027sv1849d2mc6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -248,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/MyInformationSecurityBlog/" data-id="cjuz1ru790002rov1pd10cp2x" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/MyInformationSecurityBlog/" data-id="cjv8tvqu400017sv1tc01raw4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -335,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/好的链接/" data-id="cjuz1ru7w0006rov1vxd9qmkt" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/好的链接/" data-id="cjv8tvqun00057sv1xl3ipwby" class="article-share-link">Share</a>
       
       
     </footer>
@@ -390,7 +484,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/how-to-use-jad/" data-id="cjuz1ru7g0004rov1sipo1oni" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/how-to-use-jad/" data-id="cjv8tvquf00047sv1f0uk7kjp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -482,7 +576,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2018-1261/" data-id="cjuz1ru760001rov1xfxgyo9c" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2018-1261/" data-id="cjv8tvqua00037sv1v92c7en8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -663,7 +757,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/django-excel-tool/" data-id="cjuz1ru8b0007rov1jfjetazn" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/django-excel-tool/" data-id="cjv8tvqvb00087sv1x5bplg0y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -767,7 +861,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2017-7275/" data-id="cjuz1ru6w0000rov1dkmxlrof" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2017-7275/" data-id="cjv8tvqtk00007sv1f28fqcfc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -808,6 +902,10 @@
       <ul>
         
           <li>
+            <a href="/2019/04/30/小话Java文件写入漏洞的挖掘与修复/">小话Java文件写入漏洞的挖掘与修复</a>
+          </li>
+        
+          <li>
             <a href="/2019/04/27/yaml.load反序列化漏洞/">yaml.load反序列化漏洞复现</a>
           </li>
         
@@ -821,10 +919,6 @@
         
           <li>
             <a href="/2019/03/24/好的链接/">好的链接</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/24/how-to-use-jad/">How to use JAD?</a>
           </li>
         
       </ul>
