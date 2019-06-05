@@ -5,14 +5,14 @@
   
 
   
-  <title>小话Java文件写入漏洞的挖掘与修复 | Jake&#39;s blog</title>
+  <title>С��Java�ļ�д��©�����ھ����޸� | Jake&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0x00 前言“文件写入漏洞”是在Java Web应用中比较常见的一种漏洞。这种漏洞的原因在于：部分程序在写入文件时，读取文件的参数filename直接在请求里传递，后台程序获取到这个文件路径后直接读取返回。问题在于这个参数是用户可控的，攻击者直接传入想要读取的文件路径即可利用。 该漏洞的PoC如下： 123456789101112131415161718import java.io.Fil">
+  <meta name="description" content="0x00 ǰ�����ļ�д��©��������Java WebӦ���бȽϳ�����һ��©��������©����ԭ�����ڣ����ֳ�����д���ļ�ʱ����ȡ�ļ��Ĳ���filenameֱ���������ﴫ�ݣ���̨�����ȡ������ļ�·����ֱ�Ӷ�ȡ���ء�������������������û��ɿصģ�������ֱ�Ӵ�����Ҫ��ȡ�">
 <meta property="og:type" content="article">
-<meta property="og:title" content="小话Java文件写入漏洞的挖掘与修复">
+<meta property="og:title" content="С��Java�ļ�д��©�����ھ����޸�">
 <meta property="og:url" content="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/index.html">
 <meta property="og:site_name" content="Jake&#39;s blog">
-<meta property="og:description" content="0x00 前言“文件写入漏洞”是在Java Web应用中比较常见的一种漏洞。这种漏洞的原因在于：部分程序在写入文件时，读取文件的参数filename直接在请求里传递，后台程序获取到这个文件路径后直接读取返回。问题在于这个参数是用户可控的，攻击者直接传入想要读取的文件路径即可利用。 该漏洞的PoC如下： 123456789101112131415161718import java.io.Fil">
+<meta property="og:description" content="0x00 ǰ�����ļ�д��©��������Java WebӦ���бȽϳ�����һ��©��������©����ԭ�����ڣ����ֳ�����д���ļ�ʱ����ȡ�ļ��Ĳ���filenameֱ���������ﴫ�ݣ���̨�����ȡ������ļ�·����ֱ�Ӷ�ȡ���ء�������������������û��ɿصģ�������ֱ�Ӵ�����Ҫ��ȡ�">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/TemplateController.java.png">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/getPara.png">
@@ -31,10 +31,10 @@
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/start%20commit.png">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/Fix%2049.png">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/commit.png">
-<meta property="og:updated_time" content="2019-05-04T01:30:01.895Z">
+<meta property="og:updated_time" content="2019-06-05T16:38:30.343Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小话Java文件写入漏洞的挖掘与修复">
-<meta name="twitter:description" content="0x00 前言“文件写入漏洞”是在Java Web应用中比较常见的一种漏洞。这种漏洞的原因在于：部分程序在写入文件时，读取文件的参数filename直接在请求里传递，后台程序获取到这个文件路径后直接读取返回。问题在于这个参数是用户可控的，攻击者直接传入想要读取的文件路径即可利用。 该漏洞的PoC如下： 123456789101112131415161718import java.io.Fil">
+<meta name="twitter:title" content="С��Java�ļ�д��©�����ھ����޸�">
+<meta name="twitter:description" content="0x00 ǰ�����ļ�д��©��������Java WebӦ���бȽϳ�����һ��©��������©����ԭ�����ڣ����ֳ�����д���ļ�ʱ����ȡ�ļ��Ĳ���filenameֱ���������ﴫ�ݣ���̨�����ȡ������ļ�·����ֱ�Ӷ�ȡ���ء�������������������û��ɿصģ�������ֱ�Ӵ�����Ҫ��ȡ�">
 <meta name="twitter:image" content="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/TemplateController.java.png">
   
     <link rel="alternate" href="/atom.xml" title="Jake&#39;s blog" type="application/atom+xml">
@@ -100,7 +100,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      小话Java文件写入漏洞的挖掘与修复
+      С��Java�ļ�д��©�����ھ����޸�
     </h1>
   
 
@@ -111,70 +111,70 @@
         <meta name="referrer" content="no-referrer">
 
 
-<h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>“文件写入漏洞”是在Java Web应用中比较常见的一种漏洞。这种漏洞的原因在于：部分程序在写入文件时，读取文件的参数filename直接在请求里传递，后台程序获取到这个文件路径后直接读取返回。问题在于这个参数是用户可控的，攻击者直接传入想要读取的文件路径即可利用。</p>
-<p>该漏洞的PoC如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import java.io.File;</span><br><span class="line">public class Tester &#123;</span><br><span class="line">    public static void testPath() throws Exception&#123;</span><br><span class="line">        File filename = new File(&quot;..\\src\\testPath.txt&quot;);</span><br><span class="line">        // Java 一般路径 getPath()、 绝对路径 getAbsolutePath() 和规范路径 getCanonicalPath() 不同。</span><br><span class="line">        System.out.println(filename.getPath());</span><br><span class="line">        System.out.println(filename.getAbsolutePath());</span><br><span class="line">        System.out.println(filename.getCanonicalPath());</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        try&#123;</span><br><span class="line">            testPath();</span><br><span class="line">        &#125;</span><br><span class="line">        catch (Exception e)&#123;</span><br><span class="line">            System.out.println(e.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>该PoC的执行结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">..\src\testPath.txt</span><br><span class="line">D:\eclipse_workspace\P_FILE_DEMO\..\src\testPath.txt</span><br><span class="line">D:\eclipse_workspace\src\testPath.txt</span><br></pre></td></tr></table></figure></p>
-<p>小编前段时间在ZrLog 2.1.0这套Java博客系统的后台发现了一个文件写入漏洞，之后也在ZrLog的GitHub主页提了一个issue。不久后，官方推出的2.1.1版修复了这一漏洞。小编在这个过程中学习了一些东西，于是记了这篇笔记。请帮我指正！</p>
-<p>这边博客将包含以下内容：</p>
-<p>1）漏洞描述<br>2）漏洞出现的位置<br>3）漏洞复现<br>4）漏洞修复<br>5）小总结</p>
-<h2 id="0x01-漏洞描述"><a href="#0x01-漏洞描述" class="headerlink" title="0x01 漏洞描述"></a>0x01 漏洞描述</h2><p>ZrLog 是使用 Java 开发的博客程序。<br>ZrLog 2.1.0产品后台存在文件写入漏洞，攻击者可以利用产品后台的“设置/错误页面编辑”功能进行文件写入。通过利用该漏洞，攻击者可以进行“文件的跨目录写入”，甚至替换ZrLog网站的配置文件web.xml，致使网站崩溃。</p>
-<h2 id="0x02-漏洞出现的位置"><a href="#0x02-漏洞出现的位置" class="headerlink" title="0x02 漏洞出现的位置"></a>0x02 漏洞出现的位置</h2><p>该漏洞出现的文件路径为：\zrlog\web\src\main\java\com\zrlog\web\controller\admin\api\TemplateController.java，具体位置如下图所示。</p>
+<h2 id="0x00-j��"><a href="#0x00-j��" class="headerlink" title="0x00 ǰ��"></a>0x00 ǰ��</h2><p>���ļ�д��©��������Java WebӦ���бȽϳ�����һ��©��������©����ԭ�����ڣ����ֳ�����д���ļ�ʱ����ȡ�ļ��Ĳ���filenameֱ���������ﴫ�ݣ���̨�����ȡ������ļ�·����ֱ�Ӷ�ȡ���ء�������������������û��ɿصģ�������ֱ�Ӵ�����Ҫ��ȡ���ļ�·���������á�</p>
+<p>��©����PoC���£�</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import java.io.File;</span><br><span class="line">public class Tester &#123;</span><br><span class="line">    public static void testPath() throws Exception&#123;</span><br><span class="line">        File filename = new File(&quot;..\\src\\testPath.txt&quot;);</span><br><span class="line">        // Java һ��·�� getPath()�� ����·�� getAbsolutePath() �͹淶·�� getCanonicalPath() ��ͬ��</span><br><span class="line">        System.out.println(filename.getPath());</span><br><span class="line">        System.out.println(filename.getAbsolutePath());</span><br><span class="line">        System.out.println(filename.getCanonicalPath());</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        try&#123;</span><br><span class="line">            testPath();</span><br><span class="line">        &#125;</span><br><span class="line">        catch (Exception e)&#123;</span><br><span class="line">            System.out.println(e.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>��PoC��ִ�н�����£�<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">..\src\testPath.txt</span><br><span class="line">D:\eclipse_workspace\P_FILE_DEMO\..\src\testPath.txt</span><br><span class="line">D:\eclipse_workspace\src\testPath.txt</span><br></pre></td></tr></table></figure></p>
+<p>С��ǰ��ʱ����ZrLog 2.1.0����Java����ϵͳ�ĺ�̨������һ���ļ�д��©����֮��Ҳ��ZrLog��GitHub��ҳ����һ��issue�����ú󣬹ٷ��Ƴ���2.1.1���޸�����һ©����С�������������ѧϰ��һЩ���������Ǽ�����ƪ�ʼǡ������ָ����</p>
+<p>��߲��ͽ������������ݣ�</p>
+<p>1��©������<br>2��©�����ֵ�λ��<br>3��©������<br>4��©���޸�<br>5��С�ܽ�</p>
+<h2 id="0x01-©������"><a href="#0x01-©������" class="headerlink" title="0x01 ©������"></a>0x01 ©������</h2><p>ZrLog ��ʹ�� Java �����Ĳ��ͳ���<br>ZrLog 2.1.0��Ʒ��̨�����ļ�д��©���������߿������ò�Ʒ��̨�ġ�����/����ҳ��༭�����ܽ����ļ�д�롣ͨ�����ø�©���������߿��Խ��С��ļ��Ŀ�Ŀ¼д�롱�������滻ZrLog��վ�������ļ�web.xml����ʹ��վ������</p>
+<h2 id="0x02-©�����ֵ�λ��"><a href="#0x02-©�����ֵ�λ��" class="headerlink" title="0x02 ©�����ֵ�λ��"></a>0x02 ©�����ֵ�λ��</h2><p>��©�����ֵ��ļ�·��Ϊ��\zrlog\web\src\main\java\com\zrlog\web\controller\admin\api\TemplateController.java������λ������ͼ��ʾ��</p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/TemplateController.java.png" alt="TemplateController.java.png"></p>
-<p>这段代码是网站管理员在网站后台的“设置/错误页面编辑/提交”处进行错误页面自定义的部分代码。可以发现file这个字符串由PathKit.getWebRootPath()和getPara(“file”)这两个字符串拼接而成。其中PathKit.getWebRootPath()的返回值是网站根目录的路径。跟进getPara(“file”)方法，如下图所示。</p>
+<p>��δ�������վ����Ա����վ��̨�ġ�����/����ҳ��༭/�ύ�������д���ҳ���Զ���Ĳ��ִ��롣���Է���file����ַ�����PathKit.getWebRootPath()��getPara(“file”)�������ַ���ƴ�Ӷ��ɡ�����PathKit.getWebRootPath()�ķ���ֵ����վ��Ŀ¼��·��������getPara(“file”)����������ͼ��ʾ��</p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/getPara.png" alt="getPara.png"></p>
-<p>可以发现该方法的返回值是this.request.getParameter(name)，而this.request是javax.servlet.http.HttpServletRequest对象，如下图所示。</p>
+<p>���Է��ָ÷����ķ���ֵ��this.request.getParameter(name)����this.request��javax.servlet.http.HttpServletRequest��������ͼ��ʾ��</p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/request.png" alt="request.png"></p>
-<p>由此可见，这套CMS在做“错误页面编辑”时，未进行任何过滤就进行了文件路径和文件名的拼接。</p>
-<h2 id="0x03-漏洞复现"><a href="#0x03-漏洞复现" class="headerlink" title="0x03 漏洞复现"></a>0x03 漏洞复现</h2><p>漏洞验证或利用工具为：BurpSuite、火狐浏览器；<br>使用说明如下：<br>漏洞验证过程分为以下4步：<br>1）攻击者登录ZrLog的管理后台；<br>2）攻击者使用BurpSuite抓取“错误页面编辑”的数据包；<br>3）攻击者使用BurpSuite修改“错误页面编辑”的数据包；<br>4）攻击者发送数据包。</p>
-<p>具体如下：<br>1）攻击者登录ZrLog的管理后台；</p>
+<p>�ɴ˿ɼ�������CMS����������ҳ��༭��ʱ��δ�����κι��˾ͽ������ļ�·�����ļ�����ƴ�ӡ�</p>
+<h2 id="0x03-©������"><a href="#0x03-©������" class="headerlink" title="0x03 ©������"></a>0x03 ©������</h2><p>©����֤�����ù���Ϊ��BurpSuite������������<br>ʹ��˵�����£�<br>©����֤���̷�Ϊ����4����<br>1�������ߵ�¼ZrLog�Ĺ�����̨��<br>2��������ʹ��BurpSuiteץȡ������ҳ��༭�������ݰ���<br>3��������ʹ��BurpSuite�޸ġ�����ҳ��༭�������ݰ���<br>4�������߷������ݰ���</p>
+<p>�������£�<br>1�������ߵ�¼ZrLog�Ĺ�����̨��</p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/zrlog-admin.png" alt="zrlog-admin.png"></p>
-<p>2）攻击者使用BurpSuite抓取“错误页面编辑”的数据包；</p>
+<p>2��������ʹ��BurpSuiteץȡ������ҳ��༭�������ݰ���</p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/403.jpg" alt="403.jpg"></p>
-<p>3）由上图可以发现，攻击者可以在发送Payload前更改文件名和文件内容。<br>攻击者使用BurpSuite修改“错误页面编辑”的数据包；<br>例1，进行包含恶意Javascript脚本的html文件写入<br>Payload的关键为：<br>file=%2Ferror%2Fbadegg.html&amp;content=<script>alert(document.cookie)</script><br>发送Payload，如图所示。</p>
+<p>3������ͼ���Է��֣������߿����ڷ���Payloadǰ�����ļ������ļ����ݡ�<br>������ʹ��BurpSuite�޸ġ�����ҳ��༭�������ݰ���<br>��1�����а�������Javascript�ű���html�ļ�д��<br>����Payload����ͼ��ʾ��</p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/storedxss.jpg" alt="storedxss.jpg"></p>
-<p>在浏览器访问<a href="http://192.168.42.156:8080/zrlog/error/badegg.html，如图所示。" target="_blank" rel="noopener">http://192.168.42.156:8080/zrlog/error/badegg.html，如图所示。</a></p>
+<p>�����������<a href="http://192.168.42.156:8080/zrlog/error/badegg.html����ͼ��ʾ��" target="_blank" rel="noopener">http://192.168.42.156:8080/zrlog/error/badegg.html����ͼ��ʾ��</a></p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/badegg.html.png" alt="badegg.html.png"></p>
-<p>由上图可以发现，攻击者可以通过修改文件名和文件内容，进行存储型xss攻击。</p>
-<p>例2，进行包含“../”的跨目录文件写入<br>首先，在zrlog的网站根目录写入badegg.html，Payload的关键为：<br>file=/badegg.html&amp;content=<script>alert(document.cookie)</script><br>发送Payload，如图所示。</p>
+<p>����ͼ���Է��֣������߿���ͨ���޸��ļ������ļ����ݣ����д洢��xss������</p>
+<p>��2�����а�����../���Ŀ�Ŀ¼�ļ�д��<br>����Payload����ͼ��ʾ��</p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/path1.jpg" alt="path1.jpg"></p>
-<p>访问<a href="http://192.168.42.156:8080/zrlog/badegg.html，如图所示。" target="_blank" rel="noopener">http://192.168.42.156:8080/zrlog/badegg.html，如图所示。</a></p>
+<p>����<a href="http://192.168.42.156:8080/zrlog/badegg.html����ͼ��ʾ��" target="_blank" rel="noopener">http://192.168.42.156:8080/zrlog/badegg.html����ͼ��ʾ��</a></p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/path1-badegg.png" alt="path1-badegg.png"></p>
-<p>接着，跨出zrlog的网站根目录写入safedog.html，Payload的关键为：<br>file=../../ROOT/badegg.html&amp;content=<script>alert(document.cookie)</script><br>发送Payload，如图所示。</p>
+<p>���ţ����zrlog����վ��Ŀ¼д��safedog.html��<br>����Payload����ͼ��ʾ��</p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/path2.jpg" alt="path2.jpg"></p>
-<p>访问<a href="http://192.168.42.156:8080/badegg.html，如图所示。" target="_blank" rel="noopener">http://192.168.42.156:8080/badegg.html，如图所示。</a></p>
+<p>����<a href="http://192.168.42.156:8080/badegg.html����ͼ��ʾ��" target="_blank" rel="noopener">http://192.168.42.156:8080/badegg.html����ͼ��ʾ��</a></p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/path2-badegg.jpg" alt="path2-badegg.jpg"></p>
-<p>由上图可以发现，badegg.html的存储路径跳出了网站zrlog的根目录，badegg.html被写<br>入了Tomcat的webapps/ROOT目录。</p>
-<p>例3，覆盖zrlog网站的配置文件，使得zrlog网站崩溃<br>Payload的关键为：<br>file=/WEB-INF/web.xml&amp;content=<br>发送Payload，如图所示。</p>
+<p>����ͼ���Է��֣�badegg.html�Ĵ洢·����������վzrlog�ĸ�Ŀ¼��badegg.html��д<br>����Tomcat��webapps/ROOTĿ¼��</p>
+<p>��3������zrlog��վ�������ļ���ʹ��zrlog��վ����<br>Payload�Ĺؼ�Ϊ��<br>file=/WEB-INF/web.xml&amp;content=<br>����Payload����ͼ��ʾ��</p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/web.xml.jpg" alt="web.xml.jpg"></p>
-<p>查看zrlog的web.xml的内容，如图所示。</p>
+<p>�鿴zrlog��web.xml�����ݣ���ͼ��ʾ��</p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/web.xmlisempty.png" alt="web.xmlisempty.png"></p>
-<p>由上图可以发现，web.xml的内容被置空了。</p>
-<p>访问<a href="http://192.168.42.156:8080/zrlog/，如图所示。" target="_blank" rel="noopener">http://192.168.42.156:8080/zrlog/，如图所示。</a></p>
+<p>����ͼ���Է��֣�web.xml�����ݱ��ÿ��ˡ�</p>
+<p>����<a href="http://192.168.42.156:8080/zrlog/����ͼ��ʾ��" target="_blank" rel="noopener">http://192.168.42.156:8080/zrlog/����ͼ��ʾ��</a></p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/error404.png" alt="error404.png"></p>
-<p>由上图可以发现，该zrlog博客系统已经瘫痪。</p>
-<h2 id="0x04-漏洞修复"><a href="#0x04-漏洞修复" class="headerlink" title="0x04 漏洞修复"></a>0x04 漏洞修复</h2><p>在ZrLog 2.1.1版本中，这一文件写入漏洞已经被修复，具体详情可参见：<br><a href="https://github.com/94fzb/zrlog/commit/bc6d43fcc6e2532433edfd63a8bbd1fb12611245" target="_blank" rel="noopener">https://github.com/94fzb/zrlog/commit/bc6d43fcc6e2532433edfd63a8bbd1fb12611245</a><br>如图所示。</p>
+<p>����ͼ���Է��֣���zrlog����ϵͳ�Ѿ�̱����</p>
+<h2 id="0x04-©���޸�"><a href="#0x04-©���޸�" class="headerlink" title="0x04 ©���޸�"></a>0x04 ©���޸�</h2><p>��ZrLog 2.1.1�汾�У���һ�ļ�д��©���Ѿ����޸�����������ɲμ���<br><a href="https://github.com/94fzb/zrlog/commit/bc6d43fcc6e2532433edfd63a8bbd1fb12611245" target="_blank" rel="noopener">https://github.com/94fzb/zrlog/commit/bc6d43fcc6e2532433edfd63a8bbd1fb12611245</a><br>��ͼ��ʾ��</p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/start commit.png" alt="start commit.png"></p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/Fix 49.png" alt="Fix 49.png"></p>
 <p><img src="//chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/commit.png" alt="commit.png"></p>
-<p>经过查看这一commit，可以发现，开发者修改了出现问题的saveFile方法。原来的做法是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String file = PathKit.getWebRootPath() + getPara(&quot;file&quot;);</span><br></pre></td></tr></table></figure></p>
-<p>这一做法直接将getPara(String)方法的返回值拼接到PathKit.getWebRootPath()方法的返回值之后。</p>
-<p>而修复方案是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String filePath = getAndCheckInputFile(); String file = PathKit.getWebRootPath() + filePath;</span><br></pre></td></tr></table></figure></p>
-<p>修复方案不再直接拼接getPara(String)方法，而是拼接getAndCheckInputFile()方法的返回值。<br>具体来看该方法的实现方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private String getAndCheckInputFilePath() throws IllegalAccessException &#123;</span><br><span class="line">     String filePath = getPara(&quot;path&quot;);</span><br><span class="line">     return checkByWhiteList(filePath);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
-<p>该方法调用了方法checkByWhiteList(String)对HTTP请求参数filePath做处理。继续阅读checkByWhiteList(String)方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private String checkByWhiteList(String filePath) throws IllegalAccessException &#123;</span><br><span class="line">      if (filePath.contains(&quot;../&quot;)) &#123;</span><br><span class="line">          throw new IllegalAccessException(&quot;&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      if(!filePath.startsWith(&quot;/error&quot;) &amp;&amp; !filePath.startsWith(&quot;/include&quot;))&#123;</span><br><span class="line">          throw new IllegalAccessException(&quot;&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      return filePath;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p>该方法包含了两个if判断，其含义是如果“文件路径包含了“../”或者文件路径不以“/error”结尾，则抛出“IllegalAccessException”异常。</p>
-<p>注：这次commit也修复了这个issue的任意文件读取漏洞：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/94fzb/zrlog/issues/46</span><br></pre></td></tr></table></figure></p>
-<h2 id="0x05-小总结"><a href="#0x05-小总结" class="headerlink" title="0x05 小总结"></a>0x05 小总结</h2><ol>
-<li>在挖掘“文件写入漏洞”的时候，可以考虑采用“黑白盒测试相结合”的方式（先在可能触发文件写入漏洞的点，借用BurpSuite等工具进行测试。接着，进行代码审计）；</li>
-<li>为了解某开源程序是否存在漏洞，可以查看其GitHub等平台上的“issue”或者“commit”(有些有经验的漏洞挖掘者可能通过官方更新逆推出旧版本的漏洞)；</li>
-<li>应为系统的目录赋予合适的读写权限，防止黑客使用包含 ../序列的参数来指定位于特定目录之外的文件。</li>
-<li>在ZIP文件提取等场景下，也可能出现“提取出的文件标准路径落在解压的目标目录之外”的问题，比如CVE-2018-1261（Spring Integration Zip不安全解压漏洞）……</li>
+<p>�����鿴��һcommit�����Է��֣��������޸��˳��������saveFile������ԭ���������ǣ�<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String file = PathKit.getWebRootPath() + getPara(&quot;file&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>��һ����ֱ�ӽ�getPara(String)�����ķ���ֵƴ�ӵ�PathKit.getWebRootPath()�����ķ���ֵ֮��</p>
+<p>���޸������ǣ�<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String filePath = getAndCheckInputFile(); String file = PathKit.getWebRootPath() + filePath;</span><br></pre></td></tr></table></figure></p>
+<p>�޸���������ֱ��ƴ��getPara(String)����������ƴ��getAndCheckInputFile()�����ķ���ֵ��<br>���������÷�����ʵ�ַ�ʽ��<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private String getAndCheckInputFilePath() throws IllegalAccessException &#123;</span><br><span class="line">     String filePath = getPara(&quot;path&quot;);</span><br><span class="line">     return checkByWhiteList(filePath);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>�÷��������˷���checkByWhiteList(String)��HTTP�������filePath�������������Ķ�checkByWhiteList(String)������<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private String checkByWhiteList(String filePath) throws IllegalAccessException &#123;</span><br><span class="line">      if (filePath.contains(&quot;../&quot;)) &#123;</span><br><span class="line">          throw new IllegalAccessException(&quot;&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      if(!filePath.startsWith(&quot;/error&quot;) &amp;&amp; !filePath.startsWith(&quot;/include&quot;))&#123;</span><br><span class="line">          throw new IllegalAccessException(&quot;&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      return filePath;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>�÷�������������if�жϣ��京����������ļ�·�������ˡ�../�������ļ�·�����ԡ�/error����β�����׳���IllegalAccessException���쳣��</p>
+<p>ע�����commitҲ�޸������issue�������ļ���ȡ©����<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/94fzb/zrlog/issues/46</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x05-С�ܽ�"><a href="#0x05-С�ܽ�" class="headerlink" title="0x05 С�ܽ�"></a>0x05 С�ܽ�</h2><ol>
+<li>���ھ��ļ�д��©������ʱ�򣬿��Կ��ǲ��á��ڰ׺в������ϡ��ķ�ʽ�����ڿ��ܴ����ļ�д��©���ĵ㣬����BurpSuite�ȹ��߽��в��ԡ����ţ����д�����ƣ���</li>
+<li>Ϊ�˽�ĳ��Դ�����Ƿ����©�������Բ鿴��GitHub��ƽ̨�ϵġ�issue�����ߡ�commit��(��Щ�о����©���ھ��߿���ͨ���ٷ��������Ƴ��ɰ汾��©��)��</li>
+<li>ӦΪϵͳ��Ŀ¼������ʵĶ�дȨ�ޣ���ֹ�ڿ�ʹ�ð��� ../���еĲ�����ָ��λ���ض�Ŀ¼֮����ļ���</li>
+<li>��ZIP�ļ���ȡ�ȳ����£�Ҳ���ܳ��֡���ȡ�����ļ���׼·�����ڽ�ѹ��Ŀ��Ŀ¼֮�⡱�����⣬����CVE-2018-1261��Spring Integration Zip����ȫ��ѹ©��������</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/" data-id="cjwjgcvau0008h0v1aaiu9y1x" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/04/30/小话Java文件写入漏洞的挖掘与修复/" data-id="cjwjgi4cs0007e8v1yi7c58gi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -223,7 +223,7 @@
       <ul>
         
           <li>
-            <a href="/2019/04/30/小话Java文件写入漏洞的挖掘与修复/">小话Java文件写入漏洞的挖掘与修复</a>
+            <a href="/2019/04/30/小话Java文件写入漏洞的挖掘与修复/">С��Java�ļ�д��©�����ھ����޸�</a>
           </li>
         
           <li>
