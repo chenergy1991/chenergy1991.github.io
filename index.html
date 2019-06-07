@@ -66,6 +66,64 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-使用hackhttp框架重放数据包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/07/使用hackhttp框架重放数据包/" class="article-date">
+  <time datetime="2019-06-07T00:31:00.557Z" itemprop="datePublished">2019-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/07/使用hackhttp框架重放数据包/">使用hackhttp框架重放数据包</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <meta name="referrer" content="no-referrer">
+
+
+<h2 id="0x00-关于hackhttp"><a href="#0x00-关于hackhttp" class="headerlink" title="0x00 关于hackhttp"></a>0x00 关于hackhttp</h2><p><a href="https://github.com/BugScanTeam/hackhttp" target="_blank" rel="noopener">hackhttp</a>是一个GitHub上的开源项目。官方的简介是：hackhttp 是四叶草安全旗下 BugscanTeam 打造的一款 Python 语言的 HTTP 第三方库。是分布式漏洞扫描框架 BugScan 中核心库之一。</p>
+<p>hackhttp 致力于帮助安全测试人员快速编写代码，除众多基础功能外，hackhttp 支持直接发送 HTTP 原始报文，开发者可以直接将浏览器或者 Burp Suite 等抓包工具中截获的 HTTP 报文复制后，无需修改报文，可直接使用 hackhttp 进行重放。</p>
+<p>hackhttp 使用连接池技术，在应对大量请求时自动对连接进行复用，节省建立连接时间与服务器资源，这种天生的特性，在编写爬虫时尤为显著，测试用例中提供了一个爬取乌云所有漏洞的爬虫。</p>
+<p>可以发现，hackhttp的核心代码存在与文件<a href="https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py" target="_blank" rel="noopener">https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py</a>中（import 的模块均是Python的原生模块）。</p>
+<h2 id="0x01-小试hackhttp"><a href="#0x01-小试hackhttp" class="headerlink" title="0x01 小试hackhttp"></a>0x01 小试hackhttp</h2><ul>
+<li>在本地启动Tomcat（浏览器访问地址为<a href="http://192.168.114.131:8080）" target="_blank" rel="noopener">http://192.168.114.131:8080）</a></li>
+<li>将文件<a href="https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py" target="_blank" rel="noopener">https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py</a>的内容复制到Jupyter的一个新文件中，如图所示。</li>
+</ul>
+<p><img src="使用hackhttp框架重放数据包/save hackhttp.py.png" alt="save hackhttp.py.png"></p>
+<ul>
+<li>使用BurpSuite抓取访问<a href="http://192.168.114.131:8080的数据包，" target="_blank" rel="noopener">http://192.168.114.131:8080的数据包，</a></li>
+</ul>
+<p><img src="使用hackhttp框架重放数据包/burp.png" alt="burp.png"></p>
+<ul>
+<li>在Jupyter的notebook中重放BurpSuite抓取的数据包，Python脚本如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import hackhttp</span><br><span class="line">hh = hackhttp.hackhttp()</span><br><span class="line">raw=&apos;&apos;&apos;GET / HTTP/1.1</span><br><span class="line">Host: 192.168.114.131:8080</span><br><span class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:65.0) Gecko/20100101 Firefox/65.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Cookie: PHPSESSID=e3ddf82f35b66149fd856936ad03d6a3</span><br><span class="line">Upgrade-Insecure-Requests: 1&apos;&apos;&apos;</span><br><span class="line">code, head, html, redirect, log = hh.http(&apos;http://192.168.114.131:8080&apos;, raw=raw)</span><br><span class="line">code</span><br><span class="line">print html</span><br></pre></td></tr></table></figure>
+<p>执行结果如下图所示。</p>
+<p><img src="使用hackhttp框架重放数据包/run script.png" alt="run script.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/" data-id="cjwlcu3v10002lcv12e1r7uxq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-MyInformationSecurityBlog" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/06/MyInformationSecurityBlog/" class="article-date">
@@ -133,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/06/06/MyInformationSecurityBlog/" data-id="cjwjhee040001q8v1wi7sxwnr" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/06/06/MyInformationSecurityBlog/" data-id="cjwlcu3uy0001lcv18m5gsy56" class="article-share-link">Share</a>
       
       
     </footer>
@@ -191,7 +249,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/04/27/yaml.load反序列化漏洞/" data-id="cjwjhee0i0004q8v1u3vqvu6z" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/04/27/yaml.load反序列化漏洞/" data-id="cjwlcu3ui0000lcv1urt6gufk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -278,7 +336,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/好的链接/" data-id="cjwjhee130005q8v1tvqdue7q" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/好的链接/" data-id="cjwlcu3ve0005lcv17003iy0e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -333,7 +391,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/how-to-use-jad/" data-id="cjwjhee0c0003q8v12zrctm1c" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/how-to-use-jad/" data-id="cjwlcu3v50003lcv10w7i8118" class="article-share-link">Share</a>
       
       
     </footer>
@@ -425,7 +483,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2018-1261/" data-id="cjwjhedzs0000q8v1t7yvzyyf" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2018-1261/" data-id="cjwlcu3vh0006lcv10qhm1qwl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -606,7 +664,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/django-excel-tool/" data-id="cjwjhee1r0006q8v1v4w4yyvi" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/django-excel-tool/" data-id="cjwlcu3vz0007lcv1fspeuwri" class="article-share-link">Share</a>
       
       
     </footer>
@@ -710,7 +768,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2017-7275/" data-id="cjwjhee080002q8v1oyly8dt4" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2017-7275/" data-id="cjwlcu3v80004lcv1uwe31pcb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -751,6 +809,10 @@
       <ul>
         
           <li>
+            <a href="/2019/06/07/使用hackhttp框架重放数据包/">使用hackhttp框架重放数据包</a>
+          </li>
+        
+          <li>
             <a href="/2019/06/06/MyInformationSecurityBlog/">我的网络安全技术博客（原创&amp;改编）</a>
           </li>
         
@@ -764,10 +826,6 @@
         
           <li>
             <a href="/2019/03/24/how-to-use-jad/">How to use JAD?</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/24/CVE-2018-1261/">CVE-2018-1261（Spring Integration Zip不安全解压漏洞）复现和分析</a>
           </li>
         
       </ul>
