@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/save%20hackhttp.py.png">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/burp.png">
 <meta property="og:image" content="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/run%20script.png">
-<meta property="og:updated_time" content="2019-06-07T06:01:48.274Z">
+<meta property="og:updated_time" content="2019-06-07T06:54:18.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用hackhttp框架重放数据包">
 <meta name="twitter:description" content="0x00 关于hackhttphackhttp是一个GitHub上的开源项目。官方的简介是：hackhttp 是四叶草安全旗下 BugscanTeam 打造的一款 Python 语言的 HTTP 第三方库。是分布式漏洞扫描框架 BugScan 中核心库之一。 hackhttp 致力于帮助安全测试人员快速编写代码，除众多基础功能外，hackhttp 支持直接发送 HTTP 原始报文，开发者可以">
@@ -100,7 +100,7 @@
 <h2 id="0x00-关于hackhttp"><a href="#0x00-关于hackhttp" class="headerlink" title="0x00 关于hackhttp"></a>0x00 关于hackhttp</h2><p><a href="https://github.com/BugScanTeam/hackhttp" target="_blank" rel="noopener">hackhttp</a>是一个GitHub上的开源项目。官方的简介是：hackhttp 是四叶草安全旗下 BugscanTeam 打造的一款 Python 语言的 HTTP 第三方库。是分布式漏洞扫描框架 BugScan 中核心库之一。</p>
 <p>hackhttp 致力于帮助安全测试人员快速编写代码，除众多基础功能外，hackhttp 支持直接发送 HTTP 原始报文，开发者可以直接将浏览器或者 Burp Suite 等抓包工具中截获的 HTTP 报文复制后，无需修改报文，可直接使用 hackhttp 进行重放。</p>
 <p>hackhttp 使用连接池技术，在应对大量请求时自动对连接进行复用，节省建立连接时间与服务器资源，这种天生的特性，在编写爬虫时尤为显著，测试用例中提供了一个爬取乌云所有漏洞的爬虫。</p>
-<p>可以发现，hackhttp的核心代码存在与文件<a href="https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py" target="_blank" rel="noopener">https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py</a>中（import 的模块均是Python的原生模块）。</p>
+<p>可以发现，hackhttp的核心代码存在于文件<a href="https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py" target="_blank" rel="noopener">https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py</a>中（import 的模块均是Python的原生模块）。</p>
 <h2 id="0x01-小试hackhttp"><a href="#0x01-小试hackhttp" class="headerlink" title="0x01 小试hackhttp"></a>0x01 小试hackhttp</h2><ul>
 <li>在本地启动Tomcat（浏览器访问地址为<a href="http://192.168.114.131:8080）" target="_blank" rel="noopener">http://192.168.114.131:8080）</a></li>
 <li>将文件<a href="https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py" target="_blank" rel="noopener">https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py</a>的内容复制到Jupyter的一个新文件中，如图所示。</li>
@@ -123,7 +123,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/" data-id="cjwlomsag0005akv1qhweef05" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/" data-id="cjwlqid6p0005dkv1ozq9kaku" class="article-share-link">Share</a>
       
       
     </footer>
