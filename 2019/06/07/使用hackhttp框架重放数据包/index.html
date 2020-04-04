@@ -14,14 +14,14 @@
 <meta property="og:site_name" content="Jake&#39;s blog">
 <meta property="og:description" content="0x00 关于hackhttphackhttp是一个GitHub上的开源项目。官方的简介是：hackhttp 是四叶草安全旗下 BugscanTeam 打造的一款 Python 语言的 HTTP 第三方库。是分布式漏洞扫描框架 BugScan 中核心库之一。 hackhttp 致力于帮助安全测试人员快速编写代码，除众多基础功能外，hackhttp 支持直接发送 HTTP 原始报文，开发者可以">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/save%20hackhttp.py.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/burp.png">
-<meta property="og:image" content="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/run%20script.png">
-<meta property="og:updated_time" content="2019-06-07T07:18:07.456Z">
+<meta property="og:image" content="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/使用hackhttp框架重放数据包/save%20hackhttp.py.png">
+<meta property="og:image" content="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/使用hackhttp框架重放数据包/burp.png">
+<meta property="og:image" content="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/使用hackhttp框架重放数据包/run%20script.png">
+<meta property="og:updated_time" content="2019-06-07T14:54:09.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用hackhttp框架重放数据包">
 <meta name="twitter:description" content="0x00 关于hackhttphackhttp是一个GitHub上的开源项目。官方的简介是：hackhttp 是四叶草安全旗下 BugscanTeam 打造的一款 Python 语言的 HTTP 第三方库。是分布式漏洞扫描框架 BugScan 中核心库之一。 hackhttp 致力于帮助安全测试人员快速编写代码，除众多基础功能外，hackhttp 支持直接发送 HTTP 原始报文，开发者可以">
-<meta name="twitter:image" content="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/save%20hackhttp.py.png">
+<meta name="twitter:image" content="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/使用hackhttp框架重放数据包/save%20hackhttp.py.png">
   
     <link rel="alternate" href="/atom.xml" title="Jake&#39;s blog" type="application/atom+xml">
   
@@ -100,30 +100,27 @@
 <h2 id="0x00-关于hackhttp"><a href="#0x00-关于hackhttp" class="headerlink" title="0x00 关于hackhttp"></a>0x00 关于hackhttp</h2><p><a href="https://github.com/BugScanTeam/hackhttp" target="_blank" rel="noopener">hackhttp</a>是一个GitHub上的开源项目。官方的简介是：hackhttp 是四叶草安全旗下 BugscanTeam 打造的一款 Python 语言的 HTTP 第三方库。是分布式漏洞扫描框架 BugScan 中核心库之一。</p>
 <p>hackhttp 致力于帮助安全测试人员快速编写代码，除众多基础功能外，hackhttp 支持直接发送 HTTP 原始报文，开发者可以直接将浏览器或者 Burp Suite 等抓包工具中截获的 HTTP 报文复制后，无需修改报文，可直接使用 hackhttp 进行重放。</p>
 <p>hackhttp 使用连接池技术，在应对大量请求时自动对连接进行复用，节省建立连接时间与服务器资源，这种天生的特性，在编写爬虫时尤为显著，测试用例中提供了一个爬取乌云所有漏洞的爬虫。</p>
-<p>可以发现，hackhttp的核心代码存在于文件<a href="https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py" target="_blank" rel="noopener">https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py</a>中（import 的模块均是Python的原生模块）。</p>
+<p>可以发现，hackhttp的核心代码存在与文件<a href="https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py" target="_blank" rel="noopener">https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py</a>中（import 的模块均是Python的原生模块）。</p>
 <h2 id="0x01-小试hackhttp"><a href="#0x01-小试hackhttp" class="headerlink" title="0x01 小试hackhttp"></a>0x01 小试hackhttp</h2><ul>
 <li>在本地启动Tomcat（浏览器访问地址为<a href="http://192.168.114.131:8080）" target="_blank" rel="noopener">http://192.168.114.131:8080）</a></li>
 <li>将文件<a href="https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py" target="_blank" rel="noopener">https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py</a>的内容复制到Jupyter的一个新文件中，如图所示。</li>
 </ul>
-<p><img src="/2019/06/07/使用hackhttp框架重放数据包/save hackhttp.py.png"></p>
+<p><img src="使用hackhttp框架重放数据包/save hackhttp.py.png" alt="save hackhttp.py.png"></p>
 <ul>
 <li>使用BurpSuite抓取访问<a href="http://192.168.114.131:8080的数据包，" target="_blank" rel="noopener">http://192.168.114.131:8080的数据包，</a></li>
 </ul>
-<p><img src="/2019/06/07/使用hackhttp框架重放数据包/burp.png"></p>
+<p><img src="使用hackhttp框架重放数据包/burp.png" alt="burp.png"></p>
 <ul>
 <li>在Jupyter的notebook中重放BurpSuite抓取的数据包，Python脚本如下：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import hackhttp</span><br><span class="line">hh = hackhttp.hackhttp()</span><br><span class="line">raw=&apos;&apos;&apos;GET / HTTP/1.1</span><br><span class="line">Host: 192.168.114.131:8080</span><br><span class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:65.0) Gecko/20100101 Firefox/65.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Cookie: PHPSESSID=e3ddf82f35b66149fd856936ad03d6a3</span><br><span class="line">Upgrade-Insecure-Requests: 1&apos;&apos;&apos;</span><br><span class="line">code, head, html, redirect, log = hh.http(&apos;http://192.168.114.131:8080&apos;, raw=raw)</span><br><span class="line">code</span><br><span class="line">print html</span><br></pre></td></tr></table></figure>
 <p>执行结果如下图所示。</p>
-<p><img src="/2019/06/07/使用hackhttp框架重放数据包/run script.png"></p>
-<h2 id="0x02-参考链接"><a href="#0x02-参考链接" class="headerlink" title="0x02 参考链接"></a>0x02 参考链接</h2><ul>
-<li><a href="https://github.com/BugScanTeam/hackhtt" target="_blank" rel="noopener">hackhttp GitHub</a></li>
-</ul>
+<p><img src="使用hackhttp框架重放数据包/run script.png" alt="run script.png"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/" data-id="cjwlrczl70005hgv1c46em9fn" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/" data-id="ck8lsdypn0005o8v1jafnwv88" class="article-share-link">Share</a>
       
       
     </footer>
@@ -203,7 +200,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 Jake J.Chen<br>
+      &copy; 2020 Jake J.Chen<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

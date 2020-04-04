@@ -94,30 +94,27 @@
 <h2 id="0x00-关于hackhttp"><a href="#0x00-关于hackhttp" class="headerlink" title="0x00 关于hackhttp"></a>0x00 关于hackhttp</h2><p><a href="https://github.com/BugScanTeam/hackhttp" target="_blank" rel="noopener">hackhttp</a>是一个GitHub上的开源项目。官方的简介是：hackhttp 是四叶草安全旗下 BugscanTeam 打造的一款 Python 语言的 HTTP 第三方库。是分布式漏洞扫描框架 BugScan 中核心库之一。</p>
 <p>hackhttp 致力于帮助安全测试人员快速编写代码，除众多基础功能外，hackhttp 支持直接发送 HTTP 原始报文，开发者可以直接将浏览器或者 Burp Suite 等抓包工具中截获的 HTTP 报文复制后，无需修改报文，可直接使用 hackhttp 进行重放。</p>
 <p>hackhttp 使用连接池技术，在应对大量请求时自动对连接进行复用，节省建立连接时间与服务器资源，这种天生的特性，在编写爬虫时尤为显著，测试用例中提供了一个爬取乌云所有漏洞的爬虫。</p>
-<p>可以发现，hackhttp的核心代码存在于文件<a href="https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py" target="_blank" rel="noopener">https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py</a>中（import 的模块均是Python的原生模块）。</p>
+<p>可以发现，hackhttp的核心代码存在与文件<a href="https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py" target="_blank" rel="noopener">https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py</a>中（import 的模块均是Python的原生模块）。</p>
 <h2 id="0x01-小试hackhttp"><a href="#0x01-小试hackhttp" class="headerlink" title="0x01 小试hackhttp"></a>0x01 小试hackhttp</h2><ul>
 <li>在本地启动Tomcat（浏览器访问地址为<a href="http://192.168.114.131:8080）" target="_blank" rel="noopener">http://192.168.114.131:8080）</a></li>
 <li>将文件<a href="https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py" target="_blank" rel="noopener">https://github.com/BugScanTeam/hackhttp/blob/master/hackhttp/hackhttp.py</a>的内容复制到Jupyter的一个新文件中，如图所示。</li>
 </ul>
-<p><img src="/2019/06/07/使用hackhttp框架重放数据包/save hackhttp.py.png"></p>
+<p><img src="使用hackhttp框架重放数据包/save hackhttp.py.png" alt="save hackhttp.py.png"></p>
 <ul>
 <li>使用BurpSuite抓取访问<a href="http://192.168.114.131:8080的数据包，" target="_blank" rel="noopener">http://192.168.114.131:8080的数据包，</a></li>
 </ul>
-<p><img src="/2019/06/07/使用hackhttp框架重放数据包/burp.png"></p>
+<p><img src="使用hackhttp框架重放数据包/burp.png" alt="burp.png"></p>
 <ul>
 <li>在Jupyter的notebook中重放BurpSuite抓取的数据包，Python脚本如下：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import hackhttp</span><br><span class="line">hh = hackhttp.hackhttp()</span><br><span class="line">raw=&apos;&apos;&apos;GET / HTTP/1.1</span><br><span class="line">Host: 192.168.114.131:8080</span><br><span class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:65.0) Gecko/20100101 Firefox/65.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Cookie: PHPSESSID=e3ddf82f35b66149fd856936ad03d6a3</span><br><span class="line">Upgrade-Insecure-Requests: 1&apos;&apos;&apos;</span><br><span class="line">code, head, html, redirect, log = hh.http(&apos;http://192.168.114.131:8080&apos;, raw=raw)</span><br><span class="line">code</span><br><span class="line">print html</span><br></pre></td></tr></table></figure>
 <p>执行结果如下图所示。</p>
-<p><img src="/2019/06/07/使用hackhttp框架重放数据包/run script.png"></p>
-<h2 id="0x02-参考链接"><a href="#0x02-参考链接" class="headerlink" title="0x02 参考链接"></a>0x02 参考链接</h2><ul>
-<li><a href="https://github.com/BugScanTeam/hackhtt" target="_blank" rel="noopener">hackhttp GitHub</a></li>
-</ul>
+<p><img src="使用hackhttp框架重放数据包/run script.png" alt="run script.png"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/" data-id="cjwlrczl70005hgv1c46em9fn" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/06/07/使用hackhttp框架重放数据包/" data-id="ck8lsdypn0005o8v1jafnwv88" class="article-share-link">Share</a>
       
       
     </footer>
@@ -161,7 +158,10 @@
 </li>
 </ul>
 <h6 id="Jackson"><a href="#Jackson" class="headerlink" title="-Jackson"></a>-Jackson</h6><ul>
-<li><a href="https://chenergy1991.github.io/2019/03/24/CVE-2017-7275/">CVE-2017-7275：Jackson-databind漏洞复现与分析笔记</a></li>
+<li><p><a href="https://chenergy1991.github.io/2019/03/24/CVE-2017-7275/">CVE-2017-7275：Jackson-databind漏洞复现与分析笔记</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/NEHeNTJuk_lFRHuJkIvwpA" target="_blank" rel="noopener">【安全研究】Jackson-databind远程代码执行漏洞（CVE-2019-12384）</a></p>
+</li>
 </ul>
 <h6 id="yaml-load"><a href="#yaml-load" class="headerlink" title="-yaml.load"></a>-yaml.load</h6><ul>
 <li><a href="https://chenergy1991.github.io/2019/04/27/yaml.load反序列化漏洞/">yaml.load反序列化漏洞复现</a></li>
@@ -170,7 +170,17 @@
 <li><a href="https://mp.weixin.qq.com/s/ntATs_QKONnaWMDEt-6dAw" target="_blank" rel="noopener">使用ObjectInputFilter防御一种反序列化DOS漏洞</a></li>
 </ul>
 <h4 id="不安全解压"><a href="#不安全解压" class="headerlink" title="不安全解压"></a>不安全解压</h4><ul>
-<li><a href="https://chenergy1991.github.io/2019/03/24/CVE-2018-1261/">CVE-2018-1261（Spring Integration Zip不安全解压漏洞）复现和分析</a></li>
+<li><p><a href="https://chenergy1991.github.io/2019/03/24/CVE-2018-1261/">CVE-2018-1261（Spring Integration Zip不安全解压漏洞）复现和分析</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/he9PIhPQIasndq0UAqNzZA" target="_blank" rel="noopener">【安全研究】记一次由追踪溯源发现的“不安全解压getshell”</a></p>
+</li>
+</ul>
+<p>####SQL注入</p>
+<ul>
+<li><a href="https://github.com/chenergy1991/BirthdayCard/blob/master/vul-sqli.md" target="_blank" rel="noopener">【代码审计】MyBatis框架的SQL注入”</a></li>
+</ul>
+<h4 id="模板注入"><a href="#模板注入" class="headerlink" title="模板注入"></a>模板注入</h4><ul>
+<li><a href="https://mp.weixin.qq.com/s/oLL7FX3UO-19YV246X-fAw" target="_blank" rel="noopener">【高危安全预警】Apache Solr Velocity模板注入远程代码执行漏洞</a></li>
 </ul>
 <h4 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h4><ul>
 <li><a href="https://mp.weixin.qq.com/s/aw1X10cmqqlinzIpA6UrAw" target="_blank" rel="noopener">【安全预警】kindeditor文件上传漏洞</a></li>
@@ -194,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/06/06/MyInformationSecurityBlog/" data-id="cjwlrczkq0002hgv1jc2c65az" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/06/06/MyInformationSecurityBlog/" data-id="ck8lsdynn0001o8v1xtgsv06p" class="article-share-link">Share</a>
       
       
     </footer>
@@ -252,7 +262,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/04/27/yaml.load反序列化漏洞/" data-id="cjwlrczkx0004hgv1goa75qms" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/04/27/yaml.load反序列化漏洞/" data-id="ck8lsdype0004o8v1rd65kdzo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -339,7 +349,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/好的链接/" data-id="cjwlrczls0006hgv1gm4i7j1j" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/好的链接/" data-id="ck8lsdypq0006o8v1ysc2f7ol" class="article-share-link">Share</a>
       
       
     </footer>
@@ -394,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/how-to-use-jad/" data-id="cjwlrczku0003hgv1xuxw01d0" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/how-to-use-jad/" data-id="ck8lsdynu0003o8v137s78pl3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -486,7 +496,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2018-1261/" data-id="cjwlrczkn0001hgv1nc4vedps" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2018-1261/" data-id="ck8lsdynq0002o8v1kwp6wyqf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -667,7 +677,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/django-excel-tool/" data-id="cjwlrczlt0007hgv1t9nwe98a" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/django-excel-tool/" data-id="ck8lsdyps0007o8v1710zx2gr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -771,7 +781,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2017-7275/" data-id="cjwlrczk60000hgv1juoau7pa" class="article-share-link">Share</a>
+      <a data-url="https://chenergy1991.github.io/2019/03/24/CVE-2017-7275/" data-id="ck8lsdyn80000o8v1bn7m1dpn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -843,7 +853,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 Jake J.Chen<br>
+      &copy; 2020 Jake J.Chen<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
